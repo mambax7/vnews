@@ -1,0 +1,9 @@
+2.00 Alpha 1        2014-04-23
+=================================
+- moved all images, CSS, and JS files to /assets (mamba)
+- renamed .html Smarty templates to .tpl (mamba)
+- renamed the module to vNews (mamba)
+
+1.83 Alpha 1
+=================================
+converted from fmContent (Voltan)

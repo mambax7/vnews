@@ -1,0 +1,18 @@
+Options +FollowSymlinks
+RewriteEngine on
+RewriteRule   ^vnews/topic/([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)\.html$ modules/vnews/index.php?topic=$1&page=$2 [L]
+RewriteRule   ^vnews/([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)\.html$ modules/vnews/article.php?id=$2&page=$3 [L]
+RewriteRule   ^vnews/print/([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)\.html$ modules/vnews/print.php?id=$2&page=$3 [L]
+RewriteRule   ^vnews/pdf/([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)\.html$ modules/vnews/pdf.php?id=$2&page=$3 [L]
+RewriteRule   ^vnews/comment-new/([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)\.html$ modules/vnews/comment-new.php?id=$2&page=$3 [L]
+RewriteRule   ^vnews/comment-edit/([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)\.html$ modules/vnews/comment-edit.php?id=$2&page=$3&com_id=$3 [L]
+RewriteRule   ^vnews/comment-reply/([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)\.html$ modules/vnews/comment-reply.php?id=$2&page=$3&com_id=$3 [L]
+RewriteRule   ^vnews/comment-delete/([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)\.html$ modules/vnews/comment-delete.php?id=$2&page=$3&com_id=$3 [L]
+
+OR
+
+RewriteRule   ^topic/([a-zA-Z0-9_-]*)$ modules/vnews/index.php?topic=$1 [L]
+RewriteRule   ^([a-zA-Z0-9_-]*)$ modules/vnews/article.php?story=$1 [L]
+RewriteRule   ^([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)$ modules/vnews/article.php?story=$2 [L]
+RewriteRule   ^print/([a-zA-Z0-9_-]*)$ modules/vnews/print.php?story=$1 [L]
+RewriteRule   ^pdf/([a-zA-Z0-9_-]*)$ modules/vnews/pdf.php?story=$1 [L]
