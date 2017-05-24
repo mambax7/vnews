@@ -57,7 +57,7 @@ function vnews_page_show($options) {
  */
 function vnews_page_edit($options) {
     require_once XOOPS_ROOT_PATH . '/modules/vnews/class/registry.php';
-    $registry =& ForRegistry::getInstance();
+    $registry = ForRegistry::getInstance();
     // Initialize content handler
     $story_handler = xoops_getmodulehandler('story', 'vnews');
 
