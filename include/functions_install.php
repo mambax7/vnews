@@ -12,68 +12,69 @@
 /**
  * News action script file
  *
- * @copyright   XOOPS Project (https://xoops.org)
- * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @copyright   {@link https://xoops.org/ XOOPS Project}
+ * @license     {@link http://www.fsf.org/copyleft/gpl.html GNU public license}
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
+ * @param $module
+ * @return bool
  */
 
-function xoops_module_pre_install_news($module) {
-
-    $indexFile = XOOPS_ROOT_PATH . "/uploads/index.html";
-    $blankFile = XOOPS_ROOT_PATH . "/uploads/blank.gif";
+function xoops_module_pre_install_vnews($module)
+{
+    $indexFile = XOOPS_ROOT_PATH . '/uploads/index.html';
+    $blankFile = XOOPS_ROOT_PATH . '/uploads/blank.gif';
 
     //Creation du fichier creator dans uploads
-    $module_uploads = XOOPS_ROOT_PATH . "/uploads/vnews";
+    $module_uploads = XOOPS_ROOT_PATH . '/uploads/vnews';
     if (!is_dir($module_uploads)) {
         mkdir($module_uploads, 0777);
         chmod($module_uploads, 0777);
-        copy($indexFile, XOOPS_ROOT_PATH . "/uploads/vnews/index.html");
+        copy($indexFile, XOOPS_ROOT_PATH . '/uploads/vnews/index.html');
     }
 
     //Creation du fichier price dans uploads
-    $module_uploads = XOOPS_ROOT_PATH . "/uploads/vnews/image";
+    $module_uploads = XOOPS_ROOT_PATH . '/uploads/vnews/image';
     if (!is_dir($module_uploads)) {
         mkdir($module_uploads, 0777);
         chmod($module_uploads, 0777);
-        copy($indexFile, XOOPS_ROOT_PATH . "/uploads/vnews/image/index.html");
-        copy($blankFile, XOOPS_ROOT_PATH . "/uploads/vnews/image/blank.gif");
+        copy($indexFile, XOOPS_ROOT_PATH . '/uploads/vnews/image/index.html');
+        copy($blankFile, XOOPS_ROOT_PATH . '/uploads/vnews/image/blank.gif');
     }
 
     //Creation du fichier price dans uploads
-    $module_uploads = XOOPS_ROOT_PATH . "/uploads/vnews/image/original";
+    $module_uploads = XOOPS_ROOT_PATH . '/uploads/vnews/image/original';
     if (!is_dir($module_uploads)) {
         mkdir($module_uploads, 0777);
         chmod($module_uploads, 0777);
-        copy($indexFile, XOOPS_ROOT_PATH . "/uploads/vnews/image/original/index.html");
-        copy($blankFile, XOOPS_ROOT_PATH . "/uploads/vnews/image/original/blank.gif");
+        copy($indexFile, XOOPS_ROOT_PATH . '/uploads/vnews/image/original/index.html');
+        copy($blankFile, XOOPS_ROOT_PATH . '/uploads/vnews/image/original/blank.gif');
     }
 
     //Creation du fichier price dans uploads
-    $module_uploads = XOOPS_ROOT_PATH . "/uploads/vnews/image/medium";
+    $module_uploads = XOOPS_ROOT_PATH . '/uploads/vnews/image/medium';
     if (!is_dir($module_uploads)) {
         mkdir($module_uploads, 0777);
         chmod($module_uploads, 0777);
-        copy($indexFile, XOOPS_ROOT_PATH . "/uploads/vnews/image/medium/index.html");
-        copy($blankFile, XOOPS_ROOT_PATH . "/uploads/vnews/image/medium/blank.gif");
+        copy($indexFile, XOOPS_ROOT_PATH . '/uploads/vnews/image/medium/index.html');
+        copy($blankFile, XOOPS_ROOT_PATH . '/uploads/vnews/image/medium/blank.gif');
     }
 
     //Creation du fichier price dans uploads
-    $module_uploads = XOOPS_ROOT_PATH . "/uploads/vnews/image/thumb";
+    $module_uploads = XOOPS_ROOT_PATH . '/uploads/vnews/image/thumb';
     if (!is_dir($module_uploads)) {
         mkdir($module_uploads, 0777);
         chmod($module_uploads, 0777);
-        copy($indexFile, XOOPS_ROOT_PATH . "/uploads/vnews/image/thumb/index.html");
-        copy($blankFile, XOOPS_ROOT_PATH . "/uploads/vnews/image/thumb/blank.gif");
+        copy($indexFile, XOOPS_ROOT_PATH . '/uploads/vnews/image/thumb/index.html');
+        copy($blankFile, XOOPS_ROOT_PATH . '/uploads/vnews/image/thumb/blank.gif');
     }
 
     //Creation du fichier price dans uploads
-    $module_uploads = XOOPS_ROOT_PATH . "/uploads/vnews/file";
+    $module_uploads = XOOPS_ROOT_PATH . '/uploads/vnews/file';
     if (!is_dir($module_uploads)) {
         mkdir($module_uploads, 0777);
         chmod($module_uploads, 0777);
-        copy($indexFile, XOOPS_ROOT_PATH . "/uploads/vnews/file/index.html");
-        copy($blankFile, XOOPS_ROOT_PATH . "/uploads/vnews/file/blank.gif");
+        copy($indexFile, XOOPS_ROOT_PATH . '/uploads/vnews/file/index.html');
+        copy($blankFile, XOOPS_ROOT_PATH . '/uploads/vnews/file/blank.gif');
     }
 
     return true;

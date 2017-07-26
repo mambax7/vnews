@@ -12,13 +12,15 @@
 /**
  * News
  *
- * @copyright   XOOPS Project (https://xoops.org)
- * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @copyright   {@link https://xoops.org/ XOOPS Project}
+ * @license     {@link http://www.fsf.org/copyleft/gpl.html GNU public license}
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
+ * @param $items
+ * @return bool
  */
 
-function vnews_tag_iteminfo(&$items) {
+function vnews_tag_iteminfo(&$items)
+{
     if (empty($items) || !is_array($items)) {
         return false;
     }
@@ -26,23 +28,23 @@ function vnews_tag_iteminfo(&$items) {
     $items_id = array();
     foreach (array_keys($items) as $cat_id) {
         foreach (array_keys($items[$cat_id]) as $item_id) {
-            $items_id[] = intval($item_id);
+            $items_id[] = (int)$item_id;
         }
     }
 
-    $item_handler =& xoops_getmodulehandler('story', 'vnews');
-    $items_obj = $item_handler->getObjects(new Criteria("story_id", "(" . implode(", ", $items_id) . ")", "IN"), true);
+    $itemHandler = xoops_getModuleHandler('story', 'vnews');
+    $items_obj   = $itemHandler->getObjects(new Criteria('story_id', '(' . implode(', ', $items_id) . ')', 'IN'), true);
 
     foreach (array_keys($items) as $cat_id) {
         foreach (array_keys($items[$cat_id]) as $item_id) {
             if (isset($items_obj[$item_id])) {
-                $item_obj =& $items_obj[$item_id];
+                $item_obj                 =& $items_obj[$item_id];
                 $items[$cat_id][$item_id] = array(
-                    'title' => $item_obj->getVar("story_title"),
-                    'uid' => $item_obj->getVar("story_author"),
-                    'link' => "article.php?id={$item_obj->getVar("story_id")}",
-                    'time' => $item_obj->getVar("story_create"),
-                    'tags' => '',
+                    'title'   => $item_obj->getVar('story_title'),
+                    'uid'     => $item_obj->getVar('story_author'),
+                    'link'    => "article.php?id={$item_obj->getVar('story_id')}",
+                    'time'    => $item_obj->getVar('story_create'),
+                    'tags'    => '',
                     'content' => '',
                 );
             }
@@ -54,33 +56,33 @@ function vnews_tag_iteminfo(&$items) {
 /**
  * @param $mid
  */
-function vnews_tag_synchronization($mid) {
-    $item_handler =& xoops_getmodulehandler('story', 'vnews');
-    $link_handler =& xoops_getmodulehandler("link", "tag");
+function vnews_tag_synchronization($mid)
+{
+    $itemHandler = xoops_getModuleHandler('story', 'vnews');
+    $linkHandler = xoops_getModuleHandler('link', 'tag');
 
     /* clear tag-item links */
-    if (version_compare(mysql_get_server_info(), "4.1.0", "ge")):
-        $sql = "    DELETE FROM {$link_handler->table}" .
-                "    WHERE " .
-                "        tag_modid = {$mid}" .
-                "        AND " .
-                "        ( tag_itemid NOT IN " .
-                "            ( SELECT DISTINCT {$item_handler->keyName} " .
-                "                FROM {$item_handler->table} " .
-                "                WHERE {$item_handler->table}.status > 0" .
-                "            ) " .
-                "        )";
-    else:
-        $sql = "    DELETE {$link_handler->table} FROM {$link_handler->table}" .
-                "    LEFT JOIN {$item_handler->table} AS aa ON {$link_handler->table}.tag_itemid = aa.{$item_handler->keyName} " .
-                "    WHERE " .
-                "        tag_modid = {$mid}" .
-                "        AND " .
-                "        ( aa.{$item_handler->keyName} IS NULL" .
-                "            OR aa.status < 1" .
-                "        )";
+    if (version_compare(mysqli_get_server_info(), '4.1.0', 'ge')):
+        $sql = "    DELETE FROM {$linkHandler->table}"
+               . '    WHERE '
+               . "        tag_modid = {$mid}"
+               . '        AND '
+               . '        ( tag_itemid NOT IN '
+               . "            ( SELECT DISTINCT {$itemHandler->keyName} "
+               . "                FROM {$itemHandler->table} "
+               . "                WHERE {$itemHandler->table}.status > 0"
+               . '            ) '
+               . '        )'; else:
+        $sql = "    DELETE {$linkHandler->table} FROM {$linkHandler->table}"
+               . "    LEFT JOIN {$itemHandler->table} AS aa ON {$linkHandler->table}.tag_itemid = aa.{$itemHandler->keyName} "
+               . '    WHERE '
+               . "        tag_modid = {$mid}"
+               . '        AND '
+               . "        ( aa.{$itemHandler->keyName} IS NULL"
+               . '            OR aa.status < 1'
+               . '        )';
     endif;
-    if (!$result = $link_handler->db->queryF($sql)) {
-        //xoops_error($link_handler->db->error());
+    if (!$result = $linkHandler->db->queryF($sql)) {
+        //xoops_error($linkHandler->db->error());
     }
 }

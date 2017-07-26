@@ -12,34 +12,34 @@
 /**
  * News Admin page
  *
- * @copyright   XOOPS Project (https://xoops.org)
- * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @copyright   {@link https://xoops.org/ XOOPS Project}
+ * @license     {@link http://www.fsf.org/copyleft/gpl.html GNU public license}
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
  */
 
-require dirname(__FILE__) . '/header.php';
-//include_once XOOPS_ROOT_PATH . '/class/xoopstopic.php';
-include_once XOOPS_ROOT_PATH . '/class/xoopslists.php';
-include_once XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
+require_once __DIR__ . '/header.php';
+//require_once XOOPS_ROOT_PATH . '/class/xoopstopic.php';
+require_once XOOPS_ROOT_PATH . '/class/xoopslists.php';
+require_once XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
 
 // Display Admin header
 xoops_cp_header();
+$moduleDirName = basename(dirname(__DIR__));
 
 // Check admin have access to this page
-$group = $xoopsUser->getGroups ();
-$groups = xoops_getModuleOption ( 'admin_groups', 'vnews' );
-if (count ( array_intersect ( $group, $groups ) ) <= 0) {
-    redirect_header ( 'index.php', 3, _NOPERM );
+$group  = $xoopsUser->getGroups();
+$groups = xoops_getModuleOption('admin_groups', $moduleDirName);
+if (count(array_intersect($group, $groups)) <= 0) {
+    redirect_header('index.php', 3, _NOPERM);
 }
 
 // Add module stylesheet
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/vnews/assets/css/admin.css');
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/system/css/admin.css');
 
-$permtoset = isset($_POST["permtoset"]) ? intval($_POST["permtoset"]) : 1;
-$selected = array("", "", "");
-$selected[$permtoset - 1] = " selected";
+$permtoset                = isset($_POST['permtoset']) ? (int)$_POST['permtoset'] : 1;
+$selected                 = array('', '', '');
+$selected[$permtoset - 1] = ' selected';
 
 $xoopsTpl->assign('selected0', $selected[0]);
 $xoopsTpl->assign('selected1', $selected[1]);
@@ -47,38 +47,37 @@ $xoopsTpl->assign('selected2', $selected[2]);
 
 $module_id = $xoopsModule->getVar('mid');
 
-switch ($permtoset)
-{
+switch ($permtoset) {
     case 1:
-        $title_of_form = _VNEWS_AM_PERMISSIONS_GLOBAL;
-        $perm_name = 'vnews_ac';
-        $perm_desc = "";
+        $title_of_form      = _VNEWS_AM_PERMISSIONS_GLOBAL;
+        $perm_name          = 'vnews_ac';
+        $perm_desc          = '';
         $global_perms_array = array(
             //'4' => _VNEWS_AM_PERMISSIONS_GLOBAL_4, //we add Rate system for next version
-            '8' => _VNEWS_AM_PERMISSIONS_GLOBAL_8,
+            '8'  => _VNEWS_AM_PERMISSIONS_GLOBAL_8,
             '16' => _VNEWS_AM_PERMISSIONS_GLOBAL_16
         );
         break;
     case 2:
         $title_of_form = _VNEWS_AM_PERMISSIONS_ACCESS;
-        $perm_name = "vnews_view";
-        $perm_desc = "";
+        $perm_name     = 'vnews_view';
+        $perm_desc     = '';
         break;
 
     case 3:
         $title_of_form = _VNEWS_AM_PERMISSIONS_SUBMIT;
-        $perm_name = "vnews_submit";
-        $perm_desc = "";
+        $perm_name     = 'vnews_submit';
+        $perm_desc     = '';
         break;
 
     case 4:
         $title_of_form = _VNEWS_AM_PERMISSIONS_APPROVE;
-        $perm_name = "vnews_approve";
-        $perm_desc = "";
+        $perm_name     = 'vnews_approve';
+        $perm_desc     = '';
         break;
 }
 
-$permform = new XoopsGroupPermForm($title_of_form, $module_id, $perm_name, $perm_desc, "admin/permissions.php");
+$permform = new XoopsGroupPermForm($title_of_form, $module_id, $perm_name, $perm_desc, 'admin/permissions.php');
 
 if ($permtoset == 1) {
     foreach ($global_perms_array as $perm_id => $perm_name) {
@@ -86,22 +85,22 @@ if ($permtoset == 1) {
     }
     $xoopsTpl->assign('permform', $permform->render());
 } else {
-    $xt = new XoopsTopic($xoopsDB -> prefix("vnews_topic"));
+    $xt        = new XoopsTopic($xoopsDB->prefix('vnews_topic'));
     $alltopics =& $xt->getTopicsList();
 
     foreach ($alltopics as $topic_id => $topic) {
-        $permform->addItem($topic_id, $topic["title"], $topic["pid"]);
+        $permform->addItem($topic_id, $topic['title'], $topic['pid']);
     }
 
     //check if topics exist before rendering the form and redirect, if there are no topics
-    if ($topic_handler->News_TopicCount()) {
+    if ($topicHandler->News_TopicCount()) {
         $xoopsTpl->assign('permform', $permform->render());
-     } else {
-         VnewsUtils::News_UtilityRedirect ( 'topic.php?op=new_topic', 02, _VNEWS_AM_MSG_NOPERMSSET );
-         // Include footer
-         xoops_cp_footer ();
-         exit ();
-     }
+    } else {
+        VnewsUtils::News_UtilityRedirect('topic.php?op=new_topic', 02, _VNEWS_AM_MSG_NOPERMSSET);
+        // Include footer
+        xoops_cp_footer();
+        exit();
+    }
 }
 
 $xoopsTpl->assign('navigation', 'permission');
@@ -109,7 +108,7 @@ $xoopsTpl->assign('navtitle', _VNEWS_MI_PERM);
 
 // Call template file
 $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/vnews/templates/admin/vnews_permissions.tpl');
-unset ($permform);
+unset($permform);
 
-include "footer.php";
+include __DIR__ . '/footer.php';
 xoops_cp_footer();

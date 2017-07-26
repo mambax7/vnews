@@ -12,28 +12,26 @@
 /**
  * News page class
  *
- * @copyright   XOOPS Project (https://xoops.org)
- * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @copyright   {@link https://xoops.org/ XOOPS Project}
+ * @license     {@link http://www.fsf.org/copyleft/gpl.html GNU public license}
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
  */
 
-if (! defined ( "XOOPS_ROOT_PATH" )) {
-    die ( "XOOPS root path not defined" );
-}
+defined('XOOPS_ROOT_PATH') || exit('XOOPS Root Path not defined');
 
 /**
  * Class VnewsPermission
  */
-class VnewsPermission {
-
+class VnewsPermission
+{
     /**
      * @return VnewsPermission
      */
-    public static function getHandler() {
+    public static function getHandler()
+    {
         static $permHandler;
-        if (! isset ( $permHandler )) {
-            $permHandler = new VnewsPermission ();
+        if (!isset($permHandler)) {
+            $permHandler = new VnewsPermission();
         }
 
         return $permHandler;
@@ -44,9 +42,10 @@ class VnewsPermission {
      *
      * @return string
      */
-    public function News_PermissionUserGroup($user) {
-        if (is_a ( $user, 'XoopsUser' )) {
-            return $user->getGroups ();
+    public function News_PermissionUserGroup($user)
+    {
+        if (is_a($user, 'XoopsUser')) {
+            return $user->getGroups();
         } else {
             return XOOPS_GROUP_ANONYMOUS;
         }
@@ -58,14 +57,16 @@ class VnewsPermission {
      *
      * @return mixed
      */
-    public function News_PermissionAuthorizedTopic($user, $perm) {
+    public function News_PermissionAuthorizedTopic($user, $perm)
+    {
         static $authorizedCat;
-        $userId = ($user) ? $user->getVar ( 'uid' ) : 0;
-        if (! isset ( $authorizedCat [$perm] [$userId] )) {
-            $groupPermHandler = & xoops_gethandler ( 'groupperm' );
-            $moduleHandler = & xoops_gethandler ( 'module' );
-            $module = $moduleHandler->getByDirname ( 'vnews' );
-            $authorizedCat [$perm] [$userId] = $groupPermHandler->getItemIds ( $perm, $this->News_PermissionUserGroup ( $user ), $module->getVar ( "mid" ) );
+        $userId = $user ? $user->getVar('uid') : 0;
+        if (!isset($authorizedCat [$perm] [$userId])) {
+            $groupPermHandler = xoops_getHandler('groupperm');
+            /** @var XoopsModuleHandler $moduleHandler */
+            $moduleHandler                   = xoops_getHandler('module');
+            $module                          = $moduleHandler->getByDirname('vnews');
+            $authorizedCat [$perm] [$userId] = $groupPermHandler->getItemIds($perm, $this->News_PermissionUserGroup($user), $module->getVar('mid'));
         }
 
         return $authorizedCat [$perm] [$userId];
@@ -78,10 +79,11 @@ class VnewsPermission {
      *
      * @return bool
      */
-    public function News_PermissionIsAllowed($user, $perm, $topic_id) {
-        $autorizedCat = $this->News_PermissionAuthorizedTopic ( $user, $perm);
+    public function News_PermissionIsAllowed($user, $perm, $topic_id)
+    {
+        $autorizedCat = $this->News_PermissionAuthorizedTopic($user, $perm);
 
-        return in_array ( $topic_id, $autorizedCat );
+        return in_array($topic_id, $autorizedCat);
     }
 
     /**
@@ -90,23 +92,23 @@ class VnewsPermission {
      * @param $id
      * @param $new
      */
-    public static function News_PermissionSet( $gperm_name, $groups_action, $id, $new) {
+    public static function News_PermissionSet($gperm_name, $groups_action, $id, $new)
+    {
         global $xoopsModule;
-        $gperm_handler = xoops_gethandler ( 'groupperm' );
-        if (! $new) {
-            $criteria = new CriteriaCompo ();
-            $criteria->add ( new Criteria ( 'gperm_itemid', $id) );
-            $criteria->add ( new Criteria ( 'gperm_modid', $xoopsModule->getVar('mid')) );
-            $criteria->add ( new Criteria ( 'gperm_name', $gperm_name) );
-            $gperm_handler->deleteAll ( $criteria );
+        $gpermHandler = xoops_getHandler('groupperm');
+        if (!$new) {
+            $criteria = new CriteriaCompo();
+            $criteria->add(new Criteria('gperm_itemid', $id));
+            $criteria->add(new Criteria('gperm_modid', $xoopsModule->getVar('mid')));
+            $criteria->add(new Criteria('gperm_name', $gperm_name));
+            $gpermHandler->deleteAll($criteria);
         }
 
-        if (isset ( $groups_action )) {
+        if (isset($groups_action)) {
             foreach ($groups_action as $onegroup_id) {
-                $gperm_handler->addRight ( $gperm_name, $id, $onegroup_id,$xoopsModule->getVar('mid'));
+                $gpermHandler->addRight($gperm_name, $id, $onegroup_id, $xoopsModule->getVar('mid'));
             }
         }
-
     }
 
     /**
@@ -114,15 +116,16 @@ class VnewsPermission {
      *
      * @return mixed
      */
-    public static function News_PermissionItemId($permtype) {
+    public static function News_PermissionItemId($permtype)
+    {
         global $xoopsUser;
-        $moduleHandler = xoops_gethandler('module');
-         $module = $moduleHandler->getByDirname('vnews');
-        $groups = is_object($xoopsUser) ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS;
-        $gperm_handler = xoops_gethandler('groupperm');
-        $categories = $gperm_handler->getItemIds($permtype, $groups, $module->getVar ( "mid" ));
+        /** @var XoopsModuleHandler $moduleHandler */
+        $moduleHandler = xoops_getHandler('module');
+        $module        = $moduleHandler->getByDirname('vnews');
+        $groups        = is_object($xoopsUser) ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS;
+        $gpermHandler  = xoops_getHandler('groupperm');
+        $categories    = $gpermHandler->getItemIds($permtype, $groups, $module->getVar('mid'));
 
         return $categories;
     }
-
 }

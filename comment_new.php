@@ -12,16 +12,15 @@
 /**
  * News index file
  *
- * @copyright   XOOPS Project (https://xoops.org)
- * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @copyright   {@link https://xoops.org/ XOOPS Project}
+ * @license     {@link http://www.fsf.org/copyleft/gpl.html GNU public license}
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
  */
-require dirname(__FILE__) . '/header.php';
-$com_itemid = isset($_GET['com_itemid']) ? intval($_GET['com_itemid']) : 0;
+require_once __DIR__ . '/header.php';
+$com_itemid = isset($_GET['com_itemid']) ? (int)$_GET['com_itemid'] : 0;
 if ($com_itemid > 0) {
-    $story_handler = xoops_getmodulehandler('story', 'vnews');
-    $story = $story_handler->get($com_itemid);
+    $storyHandler   = xoops_getModuleHandler('story', 'vnews');
+    $story          = $storyHandler->get($com_itemid);
     $com_replytitle = $story->getVar('story_title');
-    include_once XOOPS_ROOT_PATH . '/include/comment_new.php';
+    require_once XOOPS_ROOT_PATH . '/include/comment_new.php';
 }

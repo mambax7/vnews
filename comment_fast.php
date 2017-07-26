@@ -12,15 +12,14 @@
 /**
  * News index file
  *
- * @copyright   XOOPS Project (https://xoops.org)
- * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @copyright   {@link https://xoops.org/ XOOPS Project}
+ * @license     {@link http://www.fsf.org/copyleft/gpl.html GNU public license}
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
  */
 
-$storyid = isset($_GET['storyid']) ? intval($_GET['storyid']) : 0;
+$storyid = isset($_GET['storyid']) ? (int)$_GET['storyid'] : 0;
 if ($storyid > 0) {
-    $story_handler = xoops_getmodulehandler('story', 'vnews');
-    $content = $story_handler->get($storyid);
+    $storyHandler   = xoops_getModuleHandler('story', 'vnews');
+    $content        = $storyHandler->get($storyid);
     $com_replytitle = $content->getVar('story_title');
 }

@@ -3,35 +3,35 @@
 //  URL: http://www.xuups.com
 //  E-Mail: lusopoemas@gmail.com
 
-if (! defined ( "XOOPS_ROOT_PATH" )) {
-    die ( "XOOPS root path not defined" );
-}
+defined('XOOPS_ROOT_PATH') || exit('XOOPS Root Path not defined');
 
 /**
  * Class ForRegistry
  */
-class ForRegistry {
-
-    var $_entries;
-    var $_locks;
-    var $_dirname;
+class ForRegistry
+{
+    public $_entries;
+    public $_locks;
+    public $_dirname;
 
     /**
      * @param string $dirname
      */
-    function __construct($dirname = '') {
+    public function __construct($dirname = '')
+    {
         $this->_dirname = $dirname;
-        $this->_entries = array ();
-        $this->_locks = array ();
+        $this->_entries = array();
+        $this->_locks   = array();
     }
 
     /**
      * @return ForRegistry
      */
-    function &getInstance() {
-        static $instance = false;
-        if (! $instance) {
-            $instance = new ForRegistry ();
+    public static function getInstance()
+    {
+        static $instance;
+        if (null === $instance) {
+            $instance = new static();
         }
 
         return $instance;
@@ -43,9 +43,10 @@ class ForRegistry {
      *
      * @return bool
      */
-    function setEntry($key, $item) {
-        if ($this->isLocked ( $key ) == true) {
-            trigger_error ( 'Unable to set entry `' . $key . '`. Entry is locked.', E_USER_WARNING );
+    public function setEntry($key, $item)
+    {
+        if ($this->isLocked($key) === true) {
+            trigger_error('Unable to set entry `' . $key . '`. Entry is locked.', E_USER_WARNING);
 
             return false;
         }
@@ -58,8 +59,9 @@ class ForRegistry {
     /**
      * @param $key
      */
-    function unsetEntry($key) {
-        unset ( $this->_entries [$key] );
+    public function unsetEntry($key)
+    {
+        unset($this->_entries [$key]);
     }
 
     /**
@@ -67,8 +69,9 @@ class ForRegistry {
      *
      * @return null
      */
-    function getEntry($key) {
-        if (isset ( $this->_entries [$this->_dirname] [$key] ) == false) {
+    public function getEntry($key)
+    {
+        if (isset($this->_entries [$this->_dirname] [$key]) === false) {
             return null;
         }
 
@@ -80,8 +83,9 @@ class ForRegistry {
      *
      * @return bool
      */
-    function isEntry($key) {
-        return ($this->getEntry ( $key ) !== null);
+    public function isEntry($key)
+    {
+        return ($this->getEntry($key) !== null);
     }
 
     /**
@@ -89,7 +93,8 @@ class ForRegistry {
      *
      * @return bool
      */
-    function lockEntry($key) {
+    public function lockEntry($key)
+    {
         $this->_locks [$this->_dirname] [$key] = true;
 
         return true;
@@ -98,8 +103,9 @@ class ForRegistry {
     /**
      * @param $key
      */
-    function unlockEntry($key) {
-        unset ( $this->_locks [$this->_dirname] [$key] );
+    public function unlockEntry($key)
+    {
+        unset($this->_locks [$this->_dirname] [$key]);
     }
 
     /**
@@ -107,12 +113,14 @@ class ForRegistry {
      *
      * @return bool
      */
-    function isLocked($key) {
-        return (isset ( $this->_locks [$this->_dirname] [$key] ) == true);
+    public function isLocked($key)
+    {
+        return (isset($this->_locks [$this->_dirname] [$key]) === true);
     }
 
-    function unsetAll() {
-        $this->_entries = array ();
-        $this->_locks = array ();
+    public function unsetAll()
+    {
+        $this->_entries = array();
+        $this->_locks   = array();
     }
 }

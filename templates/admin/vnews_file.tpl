@@ -11,20 +11,31 @@
     </thead>
     <tbody class="xo-file">
     <{foreach item=file from=$files}>
-    <tr class="odd" id="mod_<{$file.file_id}>">
-        <td class="width5"><{$file.file_id}></td>
-        <td class="txtcenter bold"><{$file.file_title}></td>
-        <td class="txtcenter bold"><{$file.content}></td>
-        <td class="txtcenter width10 bold"><{$file.file_type}></td>
-        <td class="txtcenter width5 bold">
-           <img class="cursorpointer" id="file_status<{$file.file_id}>" onclick="vnews_setFileOnline( { op: 'file_status', file_id: <{$file.file_id}> }, 'file_status<{$file.file_id}>', 'backend.php' )" src="<{if $file.file_status}>../assets/images/icons/ok.png<{else}>../assets/images/icons/cancel.png<{/if}>" class="tooltip" alt=""/>
-        </td>
-        <td class="txtcenter width10 xo-actions">
-            <a href="<{$file.fileurl}>"><img class="tooltip" src="../assets/images/icons/display.png" alt="<{$smarty.const._VNEWS_AM_STORY_VIEW}>" title="<{$smarty.const._VNEWS_AM_STORY_VIEW}>"/></a>
-            <a href="file.php?op=edit_file&amp;file_id=<{$file.file_id}>"><img class="tooltip" src="<{xoAdminIcons edit.png}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>"/></a>
-            <a href="file.php?op=delete_file&amp;file_id=<{$file.file_id}>"><img class="tooltip" src="<{xoAdminIcons delete.png}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>"/></a>
-        </td>
-    </tr>
+        <tr class="odd" id="mod_<{$file.file_id}>">
+            <td class="width5"><{$file.file_id}></td>
+            <td class="txtcenter bold"><{$file.file_title}></td>
+            <td class="txtcenter bold"><{$file.content}></td>
+            <td class="txtcenter width10 bold"><{$file.file_type}></td>
+            <td class="txtcenter width5 bold">
+                <img class="cursorpointer" id="file_status<{$file.file_id}>"
+                     onclick="vnews_setFileOnline( { op: 'file_status', file_id: <{$file.file_id}> }, 'file_status<{$file.file_id}>', 'backend.php' )"
+                     src="<{if $file.file_status}>../assets/images/icons/ok.png<{else}>../assets/images/icons/cancel.png<{/if}>"
+                     class="tooltip" alt="">
+            </td>
+            <td class="txtcenter width10 xo-actions">
+                <a href="<{$file.fileurl}>"><img class="tooltip" src="../assets/images/icons/display.png"
+                                                 alt="<{$smarty.const._VNEWS_AM_STORY_VIEW}>"
+                                                 title="<{$smarty.const._VNEWS_AM_STORY_VIEW}>"></a>
+                <a href="file.php?op=edit_file&amp;file_id=<{$file.file_id}>"><img class="tooltip"
+                                                                                   src="<{xoAdminIcons edit.png}>"
+                                                                                   alt="<{$smarty.const._EDIT}>"
+                                                                                   title="<{$smarty.const._EDIT}>"></a>
+                <a href="file.php?op=delete_file&amp;file_id=<{$file.file_id}>"><img class="tooltip"
+                                                                                     src="<{xoAdminIcons delete.png}>"
+                                                                                     alt="<{$smarty.const._DELETE}>"
+                                                                                     title="<{$smarty.const._DELETE}>"></a>
+            </td>
+        </tr>
     <{/foreach}>
     </tbody>
 </table>

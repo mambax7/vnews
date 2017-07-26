@@ -12,22 +12,20 @@
 /**
  * News Admin page
  *
- * @copyright   XOOPS Project (https://xoops.org)
- * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @copyright   {@link https://xoops.org/ XOOPS Project}
+ * @license     {@link http://www.fsf.org/copyleft/gpl.html GNU public license}
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
  */
 
-require dirname(__FILE__) . '/header.php';
-include '../../../include/cp_header.php';
-include '../../../class/xoopsformloader.php';
-
+require_once __DIR__ . '/header.php';
+//require_once __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
-$aboutAdmin = new ModuleAdmin();
+$adminObject->displayNavigation(basename(__FILE__));
+$adminObject->setPaypal('xoopsfoundation@gmail.com');
+$adminObject->displayAbout(false);
 
-echo $aboutAdmin->addNavigation('about.php');
-echo $aboutAdmin->renderabout('xoopsfoundation@gmail.com', false);
+//require_once __DIR__ . '/admin_footer.php';
 
-require dirname(__FILE__) . '/footer.php';
+require_once __DIR__ . '/footer.php';
 xoops_cp_footer();

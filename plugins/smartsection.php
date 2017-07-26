@@ -1,7 +1,7 @@
 <?php
 
 /**
- * $Id: smartsection.php,v 1.1 2006/11/02 17:25:05 marcan Exp $
+ *
  * Module: SmartClone
  * Author: The SmartFactory <www.smartfactory.ca>
  * Licence: GNU
@@ -21,12 +21,12 @@
  * - Modulename : Clone name with only the first letter capitalized
  * - modulename : Clone name all lowercase
  * - MODULENAME : Clone name all uppercase
- * - CONSTANT 	: Used in the language constants. This is the 8 last characters of MODULENAME.
- * 				  Please note that the CONSTANT must be used with a prefixed and suffixed "_".
- * 				  For example : '_SSECTION_'
- * - CUSTOM 	: If CUSTOM if used, then the array will need to have another item called
- * 				  'function', which needs to be a function defined in the plugin and returing
- * 				  the string by which will be replaced the 'key'
+ * - CONSTANT   : Used in the language constants. This is the 8 last characters of MODULENAME.
+ *                Please note that the CONSTANT must be used with a prefixed and suffixed "_".
+ *                For example : '_SSECTION_'
+ * - CUSTOM     : If CUSTOM if used, then the array will need to have another item called
+ *                'function', which needs to be a function defined in the plugin and returing
+ *                the string by which will be replaced the 'key'
  *
  * The 'prefix' will be appended at the begining of the replacement string
  * The 'suffix' will be appended at the end of the replacement string
@@ -58,7 +58,7 @@
  * ++$i;
  *
  * function specialString($toModule) {
- * 	return $toModule . "-somethingSpecial";
+ *  return $toModule . "-somethingSpecial";
  * }
  * </code>
  */
@@ -68,23 +68,23 @@
  */
 $i = 0;
 
-$pluginPatterns[$i]['key'] = '_SSECTION_';
+$pluginPatterns[$i]['key']         = '_SSECTION_';
 $pluginPatterns[$i]['replacement'] = 'CONSTANT';
-$pluginPatterns[$i]['prefix'] = '_';
-$pluginPatterns[$i]['suffix'] = '_';
+$pluginPatterns[$i]['prefix']      = '_';
+$pluginPatterns[$i]['suffix']      = '_';
 ++$i;
 
-$pluginPatterns[$i]['key'] = 'SmartSection';
+$pluginPatterns[$i]['key']         = 'SmartSection';
 $pluginPatterns[$i]['replacement'] = 'ModuleName';
 ++$i;
 
-$pluginPatterns[$i]['key'] = '_SDU_';
+$pluginPatterns[$i]['key']         = '_SDU_';
 $pluginPatterns[$i]['replacement'] = 'CONSTANT';
-$pluginPatterns[$i]['prefix'] = '_';
-$pluginPatterns[$i]['suffix'] = '_';
+$pluginPatterns[$i]['prefix']      = '_';
+$pluginPatterns[$i]['suffix']      = '_';
 ++$i;
 
-$pluginPatterns[$i]['key'] = 'SmartMetaGen';
+$pluginPatterns[$i]['key']         = 'SmartMetaGen';
 $pluginPatterns[$i]['replacement'] = 'Modulename';
-$pluginPatterns[$i]['suffix'] = 'MetaGen';
+$pluginPatterns[$i]['suffix']      = 'MetaGen';
 ++$i;

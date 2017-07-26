@@ -12,23 +12,25 @@
  * News header file
  * Manage content page
  *
- * @copyright   XOOPS Project (https://xoops.org)
- * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @copyright   {@link https://xoops.org/ XOOPS Project}
+ * @license     {@link http://www.fsf.org/copyleft/gpl.html GNU public license}
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
  */
 
-defined("XOOPS_ROOT_PATH") || die("XOOPS root path not defined");
+//defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
+include __DIR__ . '/../../mainfile.php';
 
-require_once XOOPS_ROOT_PATH . '/modules/vnews/include/functions.php';
-require_once XOOPS_ROOT_PATH . '/modules/vnews/class/perm.php';
-require_once XOOPS_ROOT_PATH . '/modules/vnews/class/utils.php';
+$moduleDirName = basename(__DIR__);
+
+require_once XOOPS_ROOT_PATH . "/modules/$moduleDirName/include/functions.php";
+require_once XOOPS_ROOT_PATH . "/modules/$moduleDirName/class/perm.php";
+require_once XOOPS_ROOT_PATH . "/modules/$moduleDirName/class/utils.php";
 require_once XOOPS_ROOT_PATH . '/class/template.php';
-require_once XOOPS_ROOT_PATH . "/class/pagenav.php";
+require_once XOOPS_ROOT_PATH . '/class/pagenav.php';
 
 // Initialize content handler
-$story_handler = xoops_getmodulehandler('story', 'vnews');
-$topic_handler = xoops_getmodulehandler('topic', 'vnews');
-$file_handler = xoops_getmodulehandler('file', 'vnews');
-$rate_handler = xoops_getmodulehandler('rate', 'vnews');
-$perm_handler = VnewsPermission::getHandler();
+$storyHandler = xoops_getModuleHandler('story', $moduleDirName);
+$topicHandler = xoops_getModuleHandler('topic', $moduleDirName);
+$fileHandler  = xoops_getModuleHandler('file', $moduleDirName);
+$rateHandler  = xoops_getModuleHandler('rate', $moduleDirName);
+$permHandler  = VnewsPermission::getHandler();

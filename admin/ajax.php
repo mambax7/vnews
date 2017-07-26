@@ -12,13 +12,12 @@
 /**
  * News edit in place file
  *
- * @copyright   XOOPS Project (https://xoops.org)
- * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @copyright   {@link https://xoops.org/ XOOPS Project}
+ * @license     {@link http://www.fsf.org/copyleft/gpl.html GNU public license}
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
  */
 
-require dirname(__FILE__) . '/header.php';
+require_once __DIR__ . '/header.php';
 
 error_reporting(0);
 $GLOBALS['xoopsLogger']->activated = false;

@@ -16,11 +16,9 @@
  * @package         newbb class plugin
  * @since           4.31
  * @author          irmtfan (irmtfan@yahoo.com)
- * @author          The XOOPS Project <www.xoops.org> <www.xoops.ir>
- * @version         $Id: userlog.php 4.31 2013/05/08 16:25:04Z irmtfan $
+ * @author          XOOPS Project <www.xoops.org> <www.xoops.ir>
  */
-
-defined('XOOPS_ROOT_PATH') || die('Restricted access');
+// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
 class NewbbUserlogPlugin extends Userlog_Module_Plugin_Abstract implements UserlogPluginInterface
 {
@@ -51,34 +49,34 @@ class NewbbUserlogPlugin extends Userlog_Module_Plugin_Abstract implements Userl
     public function item($subscribe_from)
     {
         if (empty($subscribe_from)) {
-            $script_arr = array();
+            $script_arr             = array();
             $script_arr['topic_id'] = array('viewtopic.php');
-            $script_arr['forum'] = array('viewforum.php');
+            $script_arr['forum']    = array('viewforum.php');
 
             return $script_arr;
         }
 
         switch ($subscribe_from) {
-            case "viewtopic.php":
-                $topic_handler = xoops_getmodulehandler('topic', "newbb");
-                $post_id = !empty($_REQUEST["post_id"]) ? intval($_REQUEST["post_id"]) : 0;
-                $move	= isset($_GET['move'])? strtolower($_GET['move']) : '';
-                $topic_id = !empty($_REQUEST["topic_id"]) ? intval($_REQUEST["topic_id"]) : 0;
-                if ( !empty($post_id) ) {
-                    $topic_obj = $topic_handler->getByPost($post_id);
-                    $topic_id = $topic_obj->getVar("topic_id");
+            case 'viewtopic.php':
+                $topicHandler = xoops_getModuleHandler('topic', 'newbb');
+                $post_id      = !empty($_REQUEST['post_id']) ? (int)$_REQUEST['post_id'] : 0;
+                $move         = isset($_GET['move']) ? strtolower($_GET['move']) : '';
+                $topic_id     = !empty($_REQUEST['topic_id']) ? (int)$_REQUEST['topic_id'] : 0;
+                if (!empty($post_id)) {
+                    $topic_obj = $topicHandler->getByPost($post_id);
+                    $topic_id  = $topic_obj->getVar('topic_id');
                 } elseif (!empty($move)) {
-                    $forum_id = !empty($_REQUEST["forum_id"]) ? intval($_REQUEST["forum_id"]) : 0;
-                    $topic_obj = $topic_handler->getByMove($topic_id, ($move == "prev") ? -1 : 1, $forum_id);
-                    $topic_id = $topic_obj->getVar("topic_id");
+                    $forum_id  = !empty($_REQUEST['forum_id']) ? (int)$_REQUEST['forum_id'] : 0;
+                    $topic_obj = $topicHandler->getByMove($topic_id, ($move == 'prev') ? -1 : 1, $forum_id);
+                    $topic_id  = $topic_obj->getVar('topic_id');
                 }
 
-                return array("item_name"=>"topic_id", "item_id"=>$topic_id);
+                return array('item_name' => 'topic_id', 'item_id' => $topic_id);
                 break;
-            case "viewforum.php":
-                $forum_id = !empty($_REQUEST["forum"]) ? intval($_REQUEST["forum"]) : 0;
+            case 'viewforum.php':
+                $forum_id = !empty($_REQUEST['forum']) ? (int)$_REQUEST['forum'] : 0;
 
-                return array("item_name"=>"forum", "item_id"=>$forum_id);
+                return array('item_name' => 'forum', 'item_id' => $forum_id);
                 break;
         }
 

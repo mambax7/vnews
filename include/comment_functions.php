@@ -12,19 +12,22 @@
 /**
  * News
  *
- * @copyright   XOOPS Project (https://xoops.org)
- * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @copyright   {@link https://xoops.org/ XOOPS Project}
+ * @license     {@link http://www.fsf.org/copyleft/gpl.html GNU public license}
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
+ * @param $story_id
+ * @param $story_comments
  */
 // comment callback functions
 
-function vnews_com_update($story_id, $story_comments) {
-    $db =& XoopsDatabaseFactory::getDatabaseConnection();
+function vnews_com_update($story_id, $story_comments)
+{
+    $db  = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = 'UPDATE ' . $db->prefix('vnews_story') . ' SET story_comments = ' . $story_comments . ' WHERE story_id = ' . $story_id;
     $db->query($sql);
 }
 
-function vnews_com_approve() {
+function vnews_com_approve()
+{
     // not yet
 }

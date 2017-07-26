@@ -1,5 +1,5 @@
 <div class="confirmMsg txtcenter">
-    <img src="../assets/images/ajax.gif" alt="" title=""/>
+    <img src="../assets/images/ajax.gif" alt="" title="">
 
     <div class="spacer"><{$message}></div>
     <div class="txtcenter">

@@ -12,13 +12,12 @@
 /**
  * News search
  *
- * @copyright   XOOPS Project (https://xoops.org)
- * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @copyright   {@link https://xoops.org/ XOOPS Project}
+ * @license     {@link http://www.fsf.org/copyleft/gpl.html GNU public license}
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
  */
 
-defined("XOOPS_ROOT_PATH") || die("XOOPS root path not defined");
+// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
 /**
  * @param $queryarray
@@ -29,10 +28,9 @@ defined("XOOPS_ROOT_PATH") || die("XOOPS root path not defined");
  *
  * @return mixed
  */
-function vnews_search($queryarray, $andor, $limit, $offset, $userid) {
+function vnews_search($queryarray, $andor, $limit, $offset, $userid)
+{
+    $storyHandler = xoops_getModuleHandler('story', 'vnews');
 
-    $story_handler = xoops_getmodulehandler('story', 'vnews');
-
-    return $story_handler->News_StorySearch($queryarray, $andor, $limit, $offset, $userid);
-
+    return $storyHandler->News_StorySearch($queryarray, $andor, $limit, $offset, $userid);
 }

@@ -12,22 +12,23 @@
 /**
  * News action script file
  *
- * @copyright   XOOPS Project (https://xoops.org)
- * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @copyright   {@link https://xoops.org/ XOOPS Project}
+ * @license     {@link http://www.fsf.org/copyleft/gpl.html GNU public license}
  * @author      Andricq Nicolas (AKA MusS)
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
+ * @param $module
+ * @return bool
  */
 
-function xoops_module_uninstall_news($module) {
-    $db =& $GLOBALS["xoopsDB"];
+function xoops_module_uninstall_news($module)
+{
+    $db = $GLOBALS['xoopsDB'];
 
-    $created_tables = array(0 => 'vnews_story', 1 => 'vnews_topic' , 2 => 'vnews_file');
+    $created_tables = array(0 => 'vnews_story', 1 => 'vnews_topic', 2 => 'vnews_file');
 
     foreach ($created_tables as $ct) {
-        $db->query("DROP TABLE " . $db->prefix($ct));
+        $db->query('DROP TABLE ' . $db->prefix($ct));
     }
 
     return true;
-
 }

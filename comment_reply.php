@@ -12,10 +12,9 @@
 /**
  * News index file
  *
- * @copyright   XOOPS Project (https://xoops.org)
- * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @copyright   {@link https://xoops.org/ XOOPS Project}
+ * @license     {@link http://www.fsf.org/copyleft/gpl.html GNU public license}
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
  */
-include '../../mainfile.php';
+include __DIR__ . '/../../mainfile.php';
 include XOOPS_ROOT_PATH . '/include/comment_reply.php';

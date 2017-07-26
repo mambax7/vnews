@@ -12,15 +12,14 @@
 /**
  * News Admin page
  *
- * @copyright   XOOPS Project (https://xoops.org)
- * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @copyright   {@link https://xoops.org/ XOOPS Project}
+ * @license     {@link http://www.fsf.org/copyleft/gpl.html GNU public license}
  * @author      Hossein Azizabadi (AKA Voltan)
- * @version     $Id$
  */
 
-require dirname(__FILE__) . '/header.php';
+require_once __DIR__ . '/header.php';
 
-$index_admin = new ModuleAdmin();
+$adminObject = \Xmf\Module\Admin::getInstance();
 // Display Admin header
 xoops_cp_header();
 // Add module stylesheet
@@ -29,37 +28,37 @@ $xoTheme->addStylesheet(XOOPS_URL . '/modules/system/css/admin.css');
 
 $folder = array(
     XOOPS_ROOT_PATH . '/uploads/vnews/',
-    XOOPS_ROOT_PATH . xoops_getModuleOption ( 'img_dir', 'vnews' ),
-    XOOPS_ROOT_PATH . xoops_getModuleOption ( 'img_dir', 'vnews' ) . '/thumb/',
-    XOOPS_ROOT_PATH . xoops_getModuleOption ( 'img_dir', 'vnews' ) . '/medium/',
-    XOOPS_ROOT_PATH . xoops_getModuleOption ( 'img_dir', 'vnews' ) . '/original/',
-    XOOPS_ROOT_PATH . xoops_getModuleOption ( 'file_dir', 'vnews' )
+    XOOPS_ROOT_PATH . xoops_getModuleOption('img_dir', 'vnews'),
+    XOOPS_ROOT_PATH . xoops_getModuleOption('img_dir', 'vnews') . '/thumb/',
+    XOOPS_ROOT_PATH . xoops_getModuleOption('img_dir', 'vnews') . '/medium/',
+    XOOPS_ROOT_PATH . xoops_getModuleOption('img_dir', 'vnews') . '/original/',
+    XOOPS_ROOT_PATH . xoops_getModuleOption('file_dir', 'vnews')
 );
 
 $story_infos = array(
-   'story_topic' => null,
+    'story_topic' => null,
 );
 
-$index_admin = new ModuleAdmin();
-$index_admin->addInfoBox(_VNEWS_AM_INDEX_ADMENU1);
-$index_admin->addInfoBox(_VNEWS_AM_INDEX_ADMENU2);
-$index_admin->addInfoBoxLine(_VNEWS_AM_INDEX_ADMENU1, _VNEWS_AM_INDEX_TOPICS, $topic_handler->News_TopicCount());
-$index_admin->addInfoBoxLine(_VNEWS_AM_INDEX_ADMENU2, _VNEWS_AM_INDEX_CONTENTS, $story_handler->News_StoryAllCount());
-$index_admin->addInfoBoxLine(_VNEWS_AM_INDEX_ADMENU2, _VNEWS_AM_INDEX_CONTENTS_OFFLINE, $story_handler->News_StoryOfflineCount($story_infos));
-$index_admin->addInfoBoxLine(_VNEWS_AM_INDEX_ADMENU2, _VNEWS_AM_INDEX_CONTENTS_EXPIRE, $story_handler->News_StoryExpireCount($story_infos));
+$adminObject = \Xmf\Module\Admin::getInstance();
+$adminObject->addInfoBox(_VNEWS_AM_INDEX_ADMENU1);
+$adminObject->addInfoBox(_VNEWS_AM_INDEX_ADMENU2);
+$adminObject->addInfoBoxLine(_VNEWS_AM_INDEX_ADMENU1, _VNEWS_AM_INDEX_TOPICS, $topicHandler->News_TopicCount());
+$adminObject->addInfoBoxLine(_VNEWS_AM_INDEX_ADMENU2, _VNEWS_AM_INDEX_CONTENTS, $storyHandler->News_StoryAllCount());
+$adminObject->addInfoBoxLine(_VNEWS_AM_INDEX_ADMENU2, _VNEWS_AM_INDEX_CONTENTS_OFFLINE, $storyHandler->News_StoryOfflineCount($story_infos));
+$adminObject->addInfoBoxLine(_VNEWS_AM_INDEX_ADMENU2, _VNEWS_AM_INDEX_CONTENTS_EXPIRE, $storyHandler->News_StoryExpireCount($story_infos));
 
-foreach (array_keys( $folder) as $i) {
-    $index_admin->addConfigBoxLine($folder[$i], 'folder');
-    $index_admin->addConfigBoxLine(array($folder[$i], '777'), 'chmod');
+foreach (array_keys($folder) as $i) {
+    $adminObject->addConfigBoxLine($folder[$i], 'folder');
+    $adminObject->addConfigBoxLine(array($folder[$i], '777'), 'chmod');
 }
 
 $xoopsTpl->assign('navigation', 'index');
 $xoopsTpl->assign('navtitle', _VNEWS_MI_HOME);
-$xoopsTpl->assign('renderindex', $index_admin->renderIndex());
+$xoopsTpl->assign('renderindex', $adminObject->displayIndex());
 
 // Call template file
 $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/vnews/templates/admin/vnews_index.tpl');
 
 // Display Xoops footer
-include "footer.php";
+include __DIR__ . '/footer.php';
 xoops_cp_footer();
