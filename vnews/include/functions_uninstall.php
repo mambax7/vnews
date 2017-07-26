@@ -12,7 +12,7 @@
 /**
  * News action script file
  *
- * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @copyright   XOOPS Project (https://xoops.org)
  * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
  * @author      Andricq Nicolas (AKA MusS)
  * @author      Hossein Azizabadi (AKA Voltan)

@@ -12,7 +12,7 @@
 /**
  * News Admin page
  *
- * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @copyright   XOOPS Project (https://xoops.org)
  * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
  * @author      Hossein Azizabadi (AKA Voltan)
  * @version     $Id$
@@ -45,35 +45,35 @@ switch ($op) {
     default:
 
         // rebuild alias
-        $form = new XoopsThemeForm(_VNEWS_AM_TOOLS_ALIAS_CONTENT, 'tools', 'tools.php', 'post');
+        $form = new XoopsThemeForm(_VNEWS_AM_TOOLS_ALIAS_CONTENT, 'tools', 'tools.php', 'post', true);
         $form->addElement(new XoopsFormRadioYN ( _VNEWS_AM_TOOLS_ALIAS_CONTENT, 'content', "1" ));
         $form->addElement(new XoopsFormHidden('op', 'alias'));
         $form->addElement(new XoopsFormButton('', 'post', _SUBMIT, 'submit'));
         $xoopsTpl->assign('alias', $form->render());
 
         // rebuild topic alias
-        $form = new XoopsThemeForm(_VNEWS_AM_TOOLS_ALIAS_TOPIC, 'tools', 'tools.php', 'post');
+        $form = new XoopsThemeForm(_VNEWS_AM_TOOLS_ALIAS_TOPIC, 'tools', 'tools.php', 'post', true);
         $form->addElement(new XoopsFormRadioYN ( _VNEWS_AM_TOOLS_ALIAS_TOPIC, 'topic', "1" ));
         $form->addElement(new XoopsFormHidden('op', 'topicalias'));
         $form->addElement(new XoopsFormButton('', 'post', _SUBMIT, 'submit'));
         $xoopsTpl->assign('topicalias', $form->render());
 
         // rebuild description
-        $form = new XoopsThemeForm(_VNEWS_AM_TOOLS_META_DESCRIPTION, 'tools', 'tools.php', 'post');
+        $form = new XoopsThemeForm(_VNEWS_AM_TOOLS_META_DESCRIPTION, 'tools', 'tools.php', 'post', true);
         $form->addElement(new XoopsFormRadioYN ( _VNEWS_AM_TOOLS_META_DESCRIPTION, 'description', "1" ));
         $form->addElement(new XoopsFormHidden('op', 'description'));
         $form->addElement(new XoopsFormButton('', 'post', _SUBMIT, 'submit'));
         $xoopsTpl->assign('description', $form->render());
 
         // rebuild keyword
-        $form = new XoopsThemeForm(_VNEWS_AM_TOOLS_META_KEYWORD, 'tools', 'tools.php', 'post');
+        $form = new XoopsThemeForm(_VNEWS_AM_TOOLS_META_KEYWORD, 'tools', 'tools.php', 'post', true);
         $form->addElement(new XoopsFormRadioYN ( _VNEWS_AM_TOOLS_META_KEYWORD, 'keyword', "1" ));
         $form->addElement(new XoopsFormHidden('op', 'keyword'));
         $form->addElement(new XoopsFormButton('', 'post', _SUBMIT, 'submit'));
         $xoopsTpl->assign('keyword', $form->render());
 
         // prune manager
-        $form = new XoopsThemeForm(_VNEWS_AM_TOOLS_PRUNE, 'tools', 'tools.php', 'post');
+        $form = new XoopsThemeForm(_VNEWS_AM_TOOLS_PRUNE, 'tools', 'tools.php', 'post', true);
         $form->addElement(new XoopsFormTextDateSelect(_VNEWS_AM_TOOLS_PRUNE_BEFORE, 'prune_date', 15,  time()));
          $onlyexpired=new xoopsFormCheckBox('', 'onlyexpired');
          $onlyexpired->addOption(1, _VNEWS_AM_TOOLS_PRUNE_EXPIREDONLY);

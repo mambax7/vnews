@@ -12,7 +12,7 @@
 /**
  * News story class
  *
- * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @copyright   XOOPS Project (https://xoops.org)
  * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
  * @author      Hossein Azizabadi (AKA Voltan)
  * @version     $Id$
@@ -821,7 +821,7 @@ class VnewsStoryHandler extends XoopsPersistableObjectHandler {
 
     /**
      *
-     * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
+     * @copyright   XOOPS Project (https://xoops.org)
      * @license     GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
      * @author      Hervé Thouzard (http://www.instant-zero.com)
      */
@@ -834,7 +834,7 @@ class VnewsStoryHandler extends XoopsPersistableObjectHandler {
 
     /**
      *
-     * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
+     * @copyright   XOOPS Project (https://xoops.org)
      * @license     GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
      * @author      Zoullou (http://www.zoullou.net)
      */
@@ -1024,7 +1024,7 @@ class VnewsStoryHandler extends XoopsPersistableObjectHandler {
 
   /**
     * Returns the number of published vnews per topic
-    * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
+    * @copyright   XOOPS Project (https://xoops.org)
     * @license     GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
     * @author      Hervé Thouzard (http://www.instant-zero.com)
     */
@@ -1042,7 +1042,7 @@ class VnewsStoryHandler extends XoopsPersistableObjectHandler {
 
   /**
     * Get archive month
-    * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
+    * @copyright   XOOPS Project (https://xoops.org)
     * @license     GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
     * @author      Hervé Thouzard (http://www.instant-zero.com)
     */
