@@ -301,3 +301,17 @@ define('_VNEWS_MI_RELATED_LIMIT', 'Related limit');
 define('_VNEWS_MI_RELATED_LIMIT_DESC', 'Number of articles for show in Related table');
 // Vote
 define('_VNEWS_MI_VOTE_ACTIVE', 'Active vote system');
+
+//1.84
+//Help
+define('_MI_VNEWS_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_VNEWS_HELP_HEADER', __DIR__.'/help/helpheader.tpl');
+define('_MI_VNEWS_BACK_2_ADMIN', 'Back to Administration of ');
+define('_MI_VNEWS_OVERVIEW', 'Overview');
+
+//define('_MI_VNEWS_HELP_DIR', __DIR__);
+
+//help multi-page
+define('_MI_VNEWS_DISCLAIMER', 'Disclaimer');
+define('_MI_VNEWS_LICENSE', 'License');
+define('_MI_VNEWS_SUPPORT', 'Support');

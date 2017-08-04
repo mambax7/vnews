@@ -84,6 +84,14 @@ $modversion['comments']['callbackFile']        = 'include/comment_functions.php'
 $modversion['comments']['callback']['approve'] = 'vnews_com_approve';
 $modversion['comments']['callback']['update']  = 'vnews_com_update';
 
+// ------------------- Help files ------------------- //
+$modversion['helpsection'] = array(
+    ['name' => _MI_VNEWS_OVERVIEW, 'link' => 'page=help'],
+    ['name' => _MI_VNEWS_DISCLAIMER, 'link' => 'page=disclaimer'],
+    ['name' => _MI_VNEWS_LICENSE, 'link' => 'page=license'],
+    ['name' => _MI_VNEWS_SUPPORT, 'link' => 'page=support'],
+);
+
 // Templates
 $modversion['templates'][] = array('file' => 'vnews_index.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'vnews_index_default.tpl', 'description' => '');
