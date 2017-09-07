@@ -119,7 +119,7 @@ class VNewsUtility extends XoopsObject
             }
         }
 
-        if (!$success) {
+        if (false === $success) {
             $module->setErrors(sprintf(_AM_VNEWS_ERROR_BAD_XOOPS, $requiredVer, $currentVer));
         }
 

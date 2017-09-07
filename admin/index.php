@@ -26,18 +26,18 @@ xoops_cp_header();
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/vnews/assets/css/admin.css');
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/system/css/admin.css');
 
-$folder = array(
+$folder = [
     XOOPS_ROOT_PATH . '/uploads/vnews/',
     XOOPS_ROOT_PATH . xoops_getModuleOption('img_dir', 'vnews'),
     XOOPS_ROOT_PATH . xoops_getModuleOption('img_dir', 'vnews') . '/thumb/',
     XOOPS_ROOT_PATH . xoops_getModuleOption('img_dir', 'vnews') . '/medium/',
     XOOPS_ROOT_PATH . xoops_getModuleOption('img_dir', 'vnews') . '/original/',
     XOOPS_ROOT_PATH . xoops_getModuleOption('file_dir', 'vnews')
-);
+];
 
-$story_infos = array(
+$story_infos = [
     'story_topic' => null,
-);
+];
 
 $adminObject = \Xmf\Module\Admin::getInstance();
 $adminObject->addInfoBox(_VNEWS_AM_INDEX_ADMENU1);
@@ -49,7 +49,7 @@ $adminObject->addInfoBoxLine(_VNEWS_AM_INDEX_ADMENU2, _VNEWS_AM_INDEX_CONTENTS_E
 
 foreach (array_keys($folder) as $i) {
     $adminObject->addConfigBoxLine($folder[$i], 'folder');
-    $adminObject->addConfigBoxLine(array($folder[$i], '777'), 'chmod');
+    $adminObject->addConfigBoxLine([$folder[$i], '777'], 'chmod');
 }
 
 $xoopsTpl->assign('navigation', 'index');

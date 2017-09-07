@@ -31,7 +31,7 @@ if (!empty($op)) {
         // Get last story as json
         case 'story':
         case 'liststory':
-            $story_infos                = array();
+            $story_infos                = [];
             $story_infos['story_id']    = VnewsUtils::News_UtilityCleanVars($_REQUEST, 'storyid', 0, 'int');
             $story_infos['story_topic'] = VnewsUtils::News_UtilityCleanVars($_REQUEST, 'storytopic', 0, 'int');
             $story_infos['story_limit'] = VnewsUtils::News_UtilityCleanVars($_REQUEST, 'limit', 50, 'int');
@@ -39,7 +39,7 @@ if (!empty($op)) {
             break;
         // Get single story as json
         case 'singlestory':
-            $ret                   = array();
+            $ret                   = [];
             $story_id              = VnewsUtils::News_UtilityCleanVars($_REQUEST, 'storyid', 0, 'int');
             $obj                   = $storyHandler->get($story_id);
             $story                 = $obj->toArray();
@@ -58,7 +58,7 @@ if (!empty($op)) {
         // vote to story
         case 'rate':
             if ($GLOBALS['xoopsModuleConfig']['vote_active']) {
-                $info          = array();
+                $info          = [];
                 $info['story'] = VnewsUtils::News_UtilityCleanVars($_POST, 'story', 0, 'int');
                 $info['rate']  = VnewsUtils::News_UtilityCleanVars($_POST, 'rate', 0, 'int');
                 if ($info['story'] && $info['rate']) {

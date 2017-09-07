@@ -64,7 +64,7 @@ switch ($op) {
         break;
 
     default:
-        $file = array();
+        $file = [];
         // get module configs
         $moduleDirName   = basename(dirname(__DIR__));
         $file['perpage'] = '10';

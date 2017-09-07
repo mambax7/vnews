@@ -44,7 +44,7 @@ class vnews_rate extends XoopsObject
      **/
     public function toArray()
     {
-        $ret  = array();
+        $ret  = [];
         $vars = $this->getVars();
         foreach (array_keys($vars) as $i) {
             $ret [$i] = $this->getVar($i);
@@ -75,8 +75,8 @@ class VnewsRateHandler extends XoopsPersistableObjectHandler
      **/
     public function News_RateDo($info)
     {
-        $ret = array();
-        if (in_array($info['rate'], array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))) {
+        $ret = [];
+        if (in_array($info['rate'], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])) {
             // Get and check user ID
             $info['user'] = VnewsUtils::News_UtilityCurrentUserID();
             if ($info['user']) {

@@ -17,7 +17,7 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  */
 
-// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
+// defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 /**
  * @param $queryarray

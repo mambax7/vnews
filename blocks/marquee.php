@@ -31,8 +31,8 @@ function vnews_marquee_show($options)
 
     global $xoTheme;
 
-    $block                       = array();
-    $story_infos                 = array();
+    $block                       = [];
+    $story_infos                 = [];
     $story_infos['story_limit']  = $options[1];
     $story_infos['title_lenght'] = $options[2];
     $block['show_date']          = $options[3];

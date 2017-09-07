@@ -31,8 +31,8 @@ function vnews_slide_show($options)
 
     global $xoTheme;
 
-    $block       = array();
-    $story_infos = array();
+    $block       = [];
+    $story_infos = [];
 
     $story_infos['story_limit']  = $options[1];
     $block['slidetype']          = $options[2];
@@ -86,7 +86,7 @@ function vnews_slide_show($options)
             $xoTheme->addScript(XOOPS_URL . '/modules/vnews/assets/js/scrollable/scrollable.js');
             $xoTheme->addScript(XOOPS_URL . '/modules/vnews/assets/js/scrollable/setting.js');
             $xoTheme->addStylesheet(XOOPS_URL . '/modules/vnews/assets/css/scrollable.css');
-            $xoTheme->addStylesheet(null, array('rel' => 'stylesheet'), $style);
+            $xoTheme->addStylesheet(null, ['rel' => 'stylesheet'], $style);
             break;
 
         case 'sliderkit':

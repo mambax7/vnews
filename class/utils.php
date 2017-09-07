@@ -217,11 +217,11 @@ class VnewsUtils
         }
         foreach (array_keys($topic_parent) as $j) {
             if ($link === true) {
-                $topic_info = array(
+                $topic_info = [
                     'topic_id'    => $topic_parent [$j]->getVar('topic_id'),
                     'topic_title' => $topic_parent [$j]->getVar('topic_title'),
                     'topic_alias' => $topic_parent [$j]->getVar('topic_alias'),
-                );
+                ];
                 $Path       .= '<a title="' . $topic_parent [$j]->getVar($title) . '" href="' . self::News_UtilityTopicUrl($topic_info) . '">' . $topic_parent [$j]->getVar($title) . '</a>' . $prefix;
             } else {
                 $Path .= $topic_parent [$j]->getVar($title) . $prefix;
@@ -230,10 +230,10 @@ class VnewsUtils
         if ($order == 'ASC') {
             if (array_key_exists($key, $topic_array)) {
                 if ($lasturl === true) {
-                    $first_category = '<a title="' . $topic_array [$key]->getVar($title) . '" href="' . self::News_UtilityTopicUrl(array(
+                    $first_category = '<a title="' . $topic_array [$key]->getVar($title) . '" href="' . self::News_UtilityTopicUrl([
                                                                                                                                        'topic_id'    => $topic_array [$key]->getVar('topic_id'),
                                                                                                                                        'topic_alias' => $topic_array [$key]->getVar('topic_alias')
-                                                                                                                                   )) . '">' . $topic_array [$key]->getVar($title) . '</a>';
+                                                                                                                                   ]) . '">' . $topic_array [$key]->getVar($title) . '</a>';
                 } else {
                     $first_category = $topic_array [$key]->getVar($title);
                 }
@@ -271,7 +271,7 @@ class VnewsUtils
         if (!$type) {
             $type = 'type1';
         }
-        $stores = array();
+        $stores = [];
 
         switch ($type) {
 
@@ -334,7 +334,7 @@ class VnewsUtils
                     $title = $GLOBALS['xoopsModuleConfig']['static_name'];
                     $alias = self::News_UtilityAliasFilter($GLOBALS['xoopsModuleConfig']['static_name']);
                 }
-                $default_info       = array('id' => $id, 'title' => $title, 'alias' => $alias);
+                $default_info       = ['id' => $id, 'title' => $title, 'alias' => $alias];
                 $stores ['content'] = $storyHandler->News_StoryDefault($default_info);
                 break;
         }
@@ -585,7 +585,7 @@ class VnewsUtils
     {
         $editor = $GLOBALS['xoopsModuleConfig']['form_editor'];
         if (isset($editor)
-            && in_array($editor, array('tinymce', 'fckeditor', 'koivi', 'inbetween', 'spaw', 'ckeditor'))) {
+            && in_array($editor, ['tinymce', 'fckeditor', 'koivi', 'inbetween', 'spaw', 'ckeditor'])) {
             return true;
         }
 
@@ -614,7 +614,7 @@ class VnewsUtils
         $url = preg_replace('`&(amp;)?#?[a-z0-9]+;`i', '-', $url);
         $url = htmlentities($url, ENT_COMPAT, 'utf-8');
         $url = preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', "\\1", $url);
-        $url = preg_replace(array($regular_expression, '`[-]+`'), '-', $url);
+        $url = preg_replace([$regular_expression, '`[-]+`'], '-', $url);
         $url = ($url == '') ? $type : strtolower(trim($url, '-'));
 
         return $url;
@@ -641,7 +641,7 @@ class VnewsUtils
         $meta = preg_replace('`&(amp;)?#?[a-z0-9]+;`i', ',', $meta);
         $meta = htmlentities($meta, ENT_COMPAT, 'utf-8');
         $meta = preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', "\\1", $meta);
-        $meta = preg_replace(array($regular_expression, '`[,]+`'), ',', $meta);
+        $meta = preg_replace([$regular_expression, '`[,]+`'], ',', $meta);
         $meta = ($meta == '') ? $type : strtolower(trim($meta, ','));
 
         return $meta;
@@ -868,7 +868,7 @@ class VnewsUtils
      */
     public static function News_UtilityGetTree($elements, $parentId = 0)
     {
-        $branch = array();
+        $branch = [];
         foreach ($elements as $element) {
             if ($element['topic_pid'] == $parentId) {
                 $children = self::News_UtilityGetTree($elements, $element['topic_id']);

@@ -18,7 +18,7 @@
  */
 
 require_once __DIR__ . '/header.php';
-//require_once XOOPS_ROOT_PATH . '/class/xoopstopic.php';
+require_once XOOPS_ROOT_PATH . '/class/xoopstopic.php';
 require_once XOOPS_ROOT_PATH . '/class/xoopslists.php';
 require_once XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
 
@@ -38,7 +38,7 @@ $xoTheme->addStylesheet(XOOPS_URL . '/modules/vnews/assets/css/admin.css');
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/system/css/admin.css');
 
 $permtoset                = isset($_POST['permtoset']) ? (int)$_POST['permtoset'] : 1;
-$selected                 = array('', '', '');
+$selected                 = ['', '', ''];
 $selected[$permtoset - 1] = ' selected';
 
 $xoopsTpl->assign('selected0', $selected[0]);
@@ -52,11 +52,11 @@ switch ($permtoset) {
         $title_of_form      = _VNEWS_AM_PERMISSIONS_GLOBAL;
         $perm_name          = 'vnews_ac';
         $perm_desc          = '';
-        $global_perms_array = array(
+        $global_perms_array = [
             //'4' => _VNEWS_AM_PERMISSIONS_GLOBAL_4, //we add Rate system for next version
             '8'  => _VNEWS_AM_PERMISSIONS_GLOBAL_8,
             '16' => _VNEWS_AM_PERMISSIONS_GLOBAL_16
-        );
+        ];
         break;
     case 2:
         $title_of_form = _VNEWS_AM_PERMISSIONS_ACCESS;

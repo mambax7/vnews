@@ -25,7 +25,7 @@ function vnews_topic_show($options)
     $topicHandler  = xoops_getModuleHandler('topic', 'vnews');
     $moduleHandler = xoops_getHandler('module');
 
-    $block                = array();
+    $block                = [];
     $block['showtype']    = $options[1];
     $block['img']         = $options[2];
     $block['description'] = $options[3];

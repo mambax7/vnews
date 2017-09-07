@@ -38,7 +38,6 @@ $op = VnewsUtils::News_UtilityCleanVars($_REQUEST, 'op', '', 'string');
 global $xoopsUser;
 if (!$permHandler->News_PermissionIsAllowed($xoopsUser, 'vnews_ac', '8')) {
     redirect_header('index.php', 3, _NOPERM);
-    exit();
 }
 
 switch ($op) {
@@ -46,7 +45,6 @@ switch ($op) {
 
         if (!isset($_POST ['post'])) {
             redirect_header('index.php', 3, _NOPERM);
-            exit();
         }
 
         $groups = xoops_getModuleOption('groups', 'vnews');

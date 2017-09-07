@@ -16,7 +16,7 @@
 use Xmf\Module\Admin;
 use Xmf\Module\Helper;
 
-// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
+// defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 //$path = dirname(dirname(dirname(__DIR__)));
 //require_once $path . '/mainfile.php';
@@ -33,44 +33,44 @@ $pathModIcon32 = $moduleHelper->getModule()->getInfo('modicons32');
 xoops_loadLanguage('modinfo', $moduleDirName);
 
 $i             = 1;
-$adminmenu[$i] = array(
+$adminmenu[$i] = [
     'title' => _VNEWS_MI_HOME,
     'link'  => 'admin/index.php',
     'icon'  => 'assets/images/admin/home.png'
-);
+];
 ++$i;
-$adminmenu[$i] = array(
+$adminmenu[$i] = [
     'title' => _VNEWS_MI_TOPIC,
     'link'  => 'admin/topic.php',
     'icon'  => 'assets/images/admin/category.png'
-);
+];
 ++$i;
-$adminmenu[$i] = array(
+$adminmenu[$i] = [
     'title' => _VNEWS_MI_ARTICLE,
     'link'  => 'admin/article.php',
     'icon'  => 'assets/images/admin/content.png'
-);
+];
 ++$i;
-$adminmenu[$i] = array(
+$adminmenu[$i] = [
     'title' => _VNEWS_MI_FILE,
     'link'  => 'admin/file.php',
     'icon'  => 'assets/images/admin/file.png'
-);
+];
 ++$i;
-$adminmenu[$i] = array(
+$adminmenu[$i] = [
     'title' => _VNEWS_MI_TOOLS,
     'link'  => 'admin/tools.php',
     'icon'  => 'assets/images/admin/administration.png'
-);
+];
 ++$i;
-$adminmenu[$i] = array(
+$adminmenu[$i] = [
     'title' => _VNEWS_MI_PERM,
     'link'  => 'admin/permissions.php',
     'icon'  => 'assets/images/admin/permissions.png'
-);
+];
 ++$i;
-$adminmenu[$i] = array(
+$adminmenu[$i] = [
     'title' => _VNEWS_MI_ABOUT,
     'link'  => 'admin/about.php',
     'icon'  => 'assets/images/admin/about.png'
-);
+];

@@ -47,18 +47,15 @@ if (isset($story_topic)) {
     $view_topic = $topics[$story_topic];
     if (!isset($view_topic)) {
         redirect_header('index.php', 3, _VNEWS_MD_ERROR_TOPIC);
-        exit();
     }
 
     if ($view_topic->getVar('topic_online') == '0') {
         redirect_header('index.php', 3, _VNEWS_MD_ERROR_TOPIC);
-        exit();
     }
 
     // Check the access permission
     if (!$permHandler->News_PermissionIsAllowed($xoopsUser, 'vnews_view', $view_topic->getVar('topic_id'))) {
         redirect_header('index.php', 3, _NOPERM);
-        exit();
     }
 
     // get topic information
@@ -135,7 +132,7 @@ if (isset($_REQUEST ['start'])) {
     $story_start = 0;
 }
 
-$story_infos = array(
+$story_infos = [
     'topics'         => $topics,
     'story_limit'    => $story_limit,
     'story_topic'    => $story_topic,
@@ -148,7 +145,7 @@ $story_infos = array(
     'id'             => $default_id,
     'title'          => $default_title,
     'alias'          => $default_alias
-);
+];
 
 // Get Information for Show in indexpage or topic pages
 $stores = VnewsUtils::News_UtilityHomePage($story_infos, $type);
@@ -159,7 +156,7 @@ if (isset($stores ['pagenav'])) {
     $pagenav = null;
 }
 
-$info = array();
+$info = [];
 if (isset($story_topic) && $story_topic > 0
     && $view_topic->getVar('topic_showtype') != '0') { // The option for select setting from topic or module options must be added
     if ($view_topic->getVar('topic_showauthor')) {
@@ -229,7 +226,7 @@ if (isset($info['subtopic']) && $info['subtopic'] == '1') {
 }
 
 // Get default content
-$default_info       = array('id' => $default_id, 'title' => $default_title, 'alias' => $default_alias);
+$default_info       = ['id' => $default_id, 'title' => $default_title, 'alias' => $default_alias];
 $stores ['default'] = $storyHandler->News_StoryDefault($default_info);
 
 // Set view

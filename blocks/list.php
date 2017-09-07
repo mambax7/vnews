@@ -31,7 +31,7 @@ function vnews_list_show($options)
 
     global $xoTheme;
 
-    $block                       = array();
+    $block                       = [];
     $show                        = $options[1];
     $story_infos['story_limit']  = $options[2];
     $story_infos['lenght_title'] = $options[3];
@@ -77,7 +77,7 @@ function vnews_list_show($options)
 
     // Set topic limit
     if ($topiclimit) {
-        $topics   = array();
+        $topics   = [];
         $topics[] = VnewsUtils::News_UtilityCleanVars($_GET, 'storytopic', 0, 'int');
     } else {
         $topics = $options;

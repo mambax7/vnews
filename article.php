@@ -38,22 +38,19 @@ if (isset($_REQUEST['storyid'])) {
 
 if (empty($story_id)) {
     redirect_header('index.php', 3, _VNEWS_MD_ERROR_EXIST);
-    exit();
 }
 
-$story = array();
+$story = [];
 $obj   = $storyHandler->get($story_id);
 
 if (!$obj) {
     redirect_header('index.php', 3, _VNEWS_MD_ERROR_EXIST);
-    exit();
 }
 
 $story_topic = $obj->getVar('story_topic');
 
 if (!$obj->getVar('story_status')) {
     redirect_header('index.php', 3, _VNEWS_MD_ERROR_STATUS);
-    exit();
 }
 
 $story = $obj->toArray();
@@ -74,22 +71,19 @@ $story ['thumburl']      = XOOPS_URL . '/uploads/vnews/image/thumb/' . $story ['
 if (isset($story_topic) && $story_topic > 0) {
     if (!isset($view_topic)) {
         redirect_header('index.php', 3, _VNEWS_MD_TOPIC_ERROR);
-        exit();
     }
 
     if ($view_topic->getVar('topic_online') == '0') {
         redirect_header('index.php', 3, _VNEWS_MD_TOPIC_ERROR);
-        exit();
     }
 
     // Check the access permission
     if (!$permHandler->News_PermissionIsAllowed($xoopsUser, 'vnews_view', $view_topic->getVar('topic_id'))) {
         redirect_header('index.php', 3, _NOPERM);
-        exit();
     }
 }
 
-$link = array();
+$link = [];
 
 if (isset($story_topic) && $story_topic > 0
     && $view_topic->getVar('topic_showtype') != '0') { // The option for select setting from topic or module options must be added
@@ -261,7 +255,7 @@ if (xoops_getModuleOption('bc_show', 'vnews')) {
 
 // Get Attached files information
 if ($story ['story_file'] > 0) {
-    $file            = array();
+    $file            = [];
     $file['order']   = 'DESC';
     $file['sort']    = 'file_id';
     $file['start']   = 0;

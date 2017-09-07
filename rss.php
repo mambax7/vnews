@@ -89,7 +89,7 @@ if (!$xoopsTpl->is_cached('db:vnews_rss.tpl')) {
         }
     }
 
-    $story_infos = array(
+    $story_infos = [
         'topics'       => $topicHandler->getall($story_topic), // get all topic informations
         'story_limit'  => $GLOBALS['xoopsModuleConfig']['rss_perpage'],
         'story_topic'  => $story_topic,
@@ -100,7 +100,7 @@ if (!$xoopsTpl->is_cached('db:vnews_rss.tpl')) {
         'story_status' => '1',
         'story_static' => true,
         'admin_side'   => false
-    );
+    ];
 
     $stores = $storyHandler->News_StoryList($story_infos);
 

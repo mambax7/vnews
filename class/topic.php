@@ -184,7 +184,7 @@ class vnews_topic extends XoopsObject
      **/
     public function toArray()
     {
-        $ret  = array();
+        $ret  = [];
         $vars = $this->getVars();
         foreach (array_keys($vars) as $i) {
             $ret [$i] = $this->getVar($i);
@@ -255,7 +255,7 @@ class VnewsTopicHandler extends XoopsPersistableObjectHandler
      */
     public function News_TopicAdminList($topic_limit, $topic_start)
     {
-        $ret      = array();
+        $ret      = [];
         $criteria = new CriteriaCompo();
         $criteria->setSort('topic_id');
         $criteria->setOrder('DESC');
@@ -264,7 +264,7 @@ class VnewsTopicHandler extends XoopsPersistableObjectHandler
         $topics = $this->getObjects($criteria, false);
         if ($topics) {
             foreach ($topics as $root) {
-                $tab              = array();
+                $tab              = [];
                 $tab              = $root->toArray();
                 $tab ['topicurl'] = VnewsUtils::News_UtilityTopicUrl($tab);
                 $tab ['thumburl'] = XOOPS_URL . xoops_getModuleOption('img_dir', 'vnews') . '/thumb/' . $root->getVar('topic_img');
@@ -285,7 +285,7 @@ class VnewsTopicHandler extends XoopsPersistableObjectHandler
      */
     public function News_TopicList($topic_limit, $topic_start, $newscountbytopic = null)
     {
-        $ret      = array();
+        $ret      = [];
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('topic_online', 1));
         $criteria->setSort('topic_id');
@@ -295,7 +295,7 @@ class VnewsTopicHandler extends XoopsPersistableObjectHandler
         $topics = $this->getObjects($criteria, false);
         if ($topics) {
             foreach ($topics as $root) {
-                $tab              = array();
+                $tab              = [];
                 $tab              = $root->toArray();
                 $tab ['topicurl'] = VnewsUtils::News_UtilityTopicUrl($tab);
                 $tab ['thumburl'] = XOOPS_URL . xoops_getModuleOption('img_dir', 'vnews') . '/thumb/' . $root->getVar('topic_img');
@@ -360,7 +360,7 @@ class VnewsTopicHandler extends XoopsPersistableObjectHandler
      */
     public function News_TopicSubId($id, $topics)
     {
-        $ret    = array();
+        $ret    = [];
         $ret [] = $id;
         foreach ($topics as $root) {
             if ($root->getVar('topic_pid') == $id) {
@@ -381,14 +381,14 @@ class VnewsTopicHandler extends XoopsPersistableObjectHandler
         if (!isset($topic_pid)) {
             $topic_pid = 0;
         }
-        $ret      = array();
+        $ret      = [];
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('topic_online', 1));
         $criteria->add(new Criteria('topic_pid', $topic_pid));
         $topics = $this->getObjects($criteria, false);
         if ($topics) {
             foreach ($topics as $root) {
-                $tab              = array();
+                $tab              = [];
                 $tab              = $root->toArray();
                 $tab['topic_url'] = VnewsUtils::News_UtilityTopicUrl($tab);
                 $ret []           = $tab;
@@ -424,7 +424,7 @@ class VnewsTopicHandler extends XoopsPersistableObjectHandler
      */
     public function News_TopicAllVisible($topics, $topic)
     {
-        $topic_show = array();
+        $topic_show = [];
         if ($topic) {
             $topic_show[] = $topic;
         }
@@ -443,7 +443,7 @@ class VnewsTopicHandler extends XoopsPersistableObjectHandler
      */
     public function News_TopicBlockList($info)
     {
-        $ret      = array();
+        $ret      = [];
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('topic_asmenu', 1));
         $criteria->add(new Criteria('topic_online', 1));
@@ -452,7 +452,7 @@ class VnewsTopicHandler extends XoopsPersistableObjectHandler
         $topics = $this->getObjects($criteria, false);
         if ($topics) {
             foreach ($topics as $root) {
-                $tab              = array();
+                $tab              = [];
                 $tab              = $root->toArray();
                 $tab ['topicurl'] = VnewsUtils::News_UtilityTopicUrl($tab);
                 $tab ['thumburl'] = XOOPS_URL . xoops_getModuleOption('img_dir', 'vnews') . '/thumb/' . $root->getVar('topic_img');

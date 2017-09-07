@@ -31,7 +31,7 @@ require_once XOOPS_ROOT_PATH . '/language/' . $xoopsConfig['language'] . '/calen
 $lastyear  = 0;
 $lastmonth = 0;
 
-$months_arr = array(
+$months_arr = [
     1  => _CAL_JANUARY,
     2  => _CAL_FEBRUARY,
     3  => _CAL_MARCH,
@@ -44,7 +44,7 @@ $months_arr = array(
     10 => _CAL_OCTOBER,
     11 => _CAL_NOVEMBER,
     12 => _CAL_DECEMBER
-);
+];
 
 $fromyear  = VnewsUtils::News_UtilityCleanVars($_GET, 'year', 0, 'int');
 $frommonth = VnewsUtils::News_UtilityCleanVars($_GET, 'month', 0, 'int');
@@ -71,8 +71,8 @@ if (is_object($xoopsUser)) {
 }
 
 $result = $storyHandler->News_StoryArchiveMonth();
-$years  = array();
-$months = array();
+$years  = [];
+$months = [];
 $i      = 0;
 
 while (list($time) = $xoopsDB->fetchRow($result)) {
@@ -91,7 +91,7 @@ while (list($time) = $xoopsDB->fetchRow($result)) {
         if ($lastyear != $this_year) {
             $years[$i]['number'] = $lastyear;
             $years[$i]['months'] = $months;
-            $months              = array();
+            $months              = [];
             $lastmonth           = 0;
             $lastyear            = $this_year;
             ++$i;

@@ -34,7 +34,7 @@ $xoopsTpl = new XoopsTpl();
 
 $obj = $storyHandler->get($story_id);
 
-$page        = array();
+$page        = [];
 $page        = $obj->toArray();
 $story_topic = $obj->getVar('story_topic');
 
@@ -52,15 +52,12 @@ if (isset($story_topic) && $story_topic > 0) {
     // Check the access permission
     if (!$permHandler->News_PermissionIsAllowed($xoopsUser, 'vnews_view', $view_topic->getVar('topic_id'))) {
         redirect_header('index.php', 3, _NOPERM);
-        exit;
     }
 
     if ($GLOBALS['xoopsModuleConfig']['disp_option'] && $view_topic->getVar('topic_showprint') == '0') {
         redirect_header('index.php', 3, _NOPERM);
-        exit;
     } elseif ($GLOBALS['xoopsModuleConfig']['disp_printlink'] == '0') {
         redirect_header('index.php', 3, _NOPERM);
-        exit;
     }
 }
 

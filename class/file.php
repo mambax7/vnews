@@ -96,7 +96,7 @@ class vnews_file extends XoopsObject
      **/
     public function toArray()
     {
-        $ret  = array();
+        $ret  = [];
         $vars = $this->getVars();
         foreach (array_keys($vars) as $i) {
             $ret [$i] = $this->getVar($i);
@@ -127,7 +127,7 @@ class VnewsFileHandler extends XoopsPersistableObjectHandler
      */
     public function News_FileAdminList($file, $story)
     {
-        $ret      = array();
+        $ret      = [];
         $criteria = new CriteriaCompo();
         if (isset($file['content'])) {
             $criteria->add(new Criteria('file_story', $file['content']));
@@ -142,7 +142,7 @@ class VnewsFileHandler extends XoopsPersistableObjectHandler
         $files = $this->getObjects($criteria, false);
         if ($files) {
             foreach ($files as $root) {
-                $tab = array();
+                $tab = [];
                 $tab = $root->toArray();
                 if (is_array($story)) {
                     foreach (array_keys($story) as $i) {
@@ -172,7 +172,7 @@ class VnewsFileHandler extends XoopsPersistableObjectHandler
      */
     public function News_FileList($file)
     {
-        $ret      = array();
+        $ret      = [];
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('file_story', $file['content']));
         $criteria->add(new Criteria('file_status', 1));
@@ -182,7 +182,7 @@ class VnewsFileHandler extends XoopsPersistableObjectHandler
         $files = $this->getObjects($criteria, false);
         if ($files) {
             foreach ($files as $root) {
-                $tab             = array();
+                $tab             = [];
                 $tab             = $root->toArray();
                 $tab ['fileurl'] = XOOPS_URL . xoops_getModuleOption('file_dir', 'vnews') . '/' . $root->getVar('file_name');
                 $ret []          = $tab;

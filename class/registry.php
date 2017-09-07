@@ -3,7 +3,7 @@
 //  URL: http://www.xuups.com
 //  E-Mail: lusopoemas@gmail.com
 
-defined('XOOPS_ROOT_PATH') || exit('XOOPS Root Path not defined');
+defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 /**
  * Class ForRegistry
@@ -20,8 +20,8 @@ class ForRegistry
     public function __construct($dirname = '')
     {
         $this->_dirname = $dirname;
-        $this->_entries = array();
-        $this->_locks   = array();
+        $this->_entries = [];
+        $this->_locks   = [];
     }
 
     /**
@@ -120,7 +120,7 @@ class ForRegistry
 
     public function unsetAll()
     {
-        $this->_entries = array();
-        $this->_locks   = array();
+        $this->_entries = [];
+        $this->_locks   = [];
     }
 }

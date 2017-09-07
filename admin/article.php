@@ -33,6 +33,7 @@ $storyHandler = xoops_getModuleHandler('story', $moduleDirName);
 // Define scripts
 $xoTheme->addScript('browse.php?Frameworks/jquery/jquery.js');
 $xoTheme->addScript('browse.php?Frameworks/jquery/plugins/jquery.ui.js');
+$xoTheme->addScript(XOOPS_URL . '/modules/vnews/assets/js/order.js');
 $xoTheme->addScript('browse.php?modules/' . $moduleDirName . '/assets/js/admin.js');
 
 // Add module stylesheet
@@ -109,7 +110,7 @@ switch ($op) {
 
     case 'expire':
 
-        $story_infos = array(
+        $story_infos = [
             'topics'       => $topics,
             'story_limit'  => $story_limit,
             'story_topic'  => $story_topic,
@@ -117,7 +118,7 @@ switch ($op) {
             'story_start'  => $story_start,
             'story_status' => 1,
             'story_static' => false,
-        );
+        ];
 
         $stores        = $storyHandler->News_StoryExpireList($story_infos);
         $story_numrows = $storyHandler->News_StoryExpireCount($story_infos);
@@ -143,7 +144,7 @@ switch ($op) {
 
     case 'offline':
 
-        $story_infos = array(
+        $story_infos = [
             'topics'       => $topics,
             'story_limit'  => $story_limit,
             'story_topic'  => $story_topic,
@@ -151,7 +152,7 @@ switch ($op) {
             'story_start'  => $story_start,
             'story_status' => 0,
             'story_static' => false,
-        );
+        ];
 
         $stores        = $storyHandler->News_StoryAdminList($story_infos);
         $story_numrows = $storyHandler->News_StoryOfflineCount($story_infos);
@@ -177,7 +178,7 @@ switch ($op) {
 
     default:
 
-        $story_infos = array(
+        $story_infos = [
             'topics'       => $topics,
             'story_limit'  => $story_limit,
             'story_topic'  => $story_topic,
@@ -185,7 +186,7 @@ switch ($op) {
             'story_start'  => $story_start,
             'story_status' => false,
             'story_static' => false,
-        );
+        ];
 
         $stores        = $storyHandler->News_StoryAdminList($story_infos);
         $story_numrows = $storyHandler->News_StoryAdminCount($story_infos);
