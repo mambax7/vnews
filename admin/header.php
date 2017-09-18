@@ -32,6 +32,10 @@ xoops_load('xoopsformloader');
 
 $moduleDirName = basename(dirname(__DIR__));
 // Initialize content handler
+
+/** @var Xmf\Module\Admin $adminObject */
+$adminObject = \Xmf\Module\Admin::getInstance();
+
 $storyHandler = xoops_getModuleHandler('story', $moduleDirName);
 $topicHandler = xoops_getModuleHandler('topic', $moduleDirName);
 $fileHandler  = xoops_getModuleHandler('file', $moduleDirName);

@@ -143,7 +143,7 @@ class vnews_story extends XoopsObject
         $text_editor_tray->setDescription(_VNEWS_AM_STORY_FORMTEXT_DESC);
         $form->addElement($text_editor_tray);
         //tag
-        if (xoops_getModuleOption('usetag', 'vnews') and is_dir(XOOPS_ROOT_PATH . '/modules/tag')) {
+        if (xoops_getModuleOption('usetag', 'vnews') && is_dir(XOOPS_ROOT_PATH . '/modules/tag')) {
             $items_id = $this->isNew() ? 0 : $this->getVar('story_id');
             require_once XOOPS_ROOT_PATH . '/modules/tag/include/formtag.php';
             $form->addElement(new TagFormTag('item_tag', 60, 255, $items_id, $catid = 0));
@@ -331,7 +331,7 @@ class vnews_story extends XoopsObject
         $text_editor_tray->setDescription(_VNEWS_AM_STORY_FORMTEXT_DESC);
         $form->addElement($text_editor_tray);
         //tag
-        if (xoops_getModuleOption('usetag', 'vnews') and is_dir(XOOPS_ROOT_PATH . '/modules/tag')) {
+        if (xoops_getModuleOption('usetag', 'vnews') && is_dir(XOOPS_ROOT_PATH . '/modules/tag')) {
             $items_id = $this->isNew() ? 0 : $this->getVar('story_id');
             require_once XOOPS_ROOT_PATH . '/modules/tag/include/formtag.php';
             $form->addElement(new TagFormTag('item_tag', 60, 255, $items_id, $catid = 0));

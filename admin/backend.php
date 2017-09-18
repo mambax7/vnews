@@ -153,7 +153,7 @@ switch ($op) {
         $storyHandler->News_ResetPrevious($_REQUEST ['story_topic'], $obj->getVar('story_id'));
 
         // tag
-        if (xoops_getModuleOption('usetag', 'vnews') and is_dir(XOOPS_ROOT_PATH . '/modules/tag')) {
+        if (xoops_getModuleOption('usetag', 'vnews') && is_dir(XOOPS_ROOT_PATH . '/modules/tag')) {
             $tagHandler = xoops_getModuleHandler('tag', 'tag');
             $tagHandler->updateByItem($_POST ['item_tag'], $obj->getVar('story_id'), 0);
         }
@@ -240,7 +240,7 @@ switch ($op) {
             }
 
             //tag
-            if (xoops_getModuleOption('usetag', 'vnews') and is_dir(XOOPS_ROOT_PATH . '/modules/tag')) {
+            if (xoops_getModuleOption('usetag', 'vnews') && is_dir(XOOPS_ROOT_PATH . '/modules/tag')) {
                 $tagHandler = xoops_getModuleHandler('tag', 'tag');
                 $tagHandler->updateByItem($_POST ['item_tag'], $story_id, $catid = 0);
             }

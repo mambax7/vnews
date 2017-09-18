@@ -19,9 +19,13 @@
 
 require_once __DIR__ . '/header.php';
 
-$adminObject = \Xmf\Module\Admin::getInstance();
 // Display Admin header
 xoops_cp_header();
+
+//$adminObject = \Xmf\Module\Admin::getInstance();
+$xoopsTpl->assign('navigation', 'index' );
+$xoopsTpl->assign('navtitle', _VNEWS_MI_HOME);
+
 // Add module stylesheet
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/vnews/assets/css/admin.css');
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/system/css/admin.css');
@@ -39,21 +43,23 @@ $story_infos = [
     'story_topic' => null,
 ];
 
-$adminObject = \Xmf\Module\Admin::getInstance();
+//$adminObject = \Xmf\Module\Admin::getInstance();
 $adminObject->addInfoBox(_VNEWS_AM_INDEX_ADMENU1);
+$adminObject->addInfoBoxLine(sprintf( _VNEWS_AM_INDEX_TOPICS, $topicHandler->News_TopicCount()),'');
+
 $adminObject->addInfoBox(_VNEWS_AM_INDEX_ADMENU2);
-$adminObject->addInfoBoxLine(_VNEWS_AM_INDEX_ADMENU1, _VNEWS_AM_INDEX_TOPICS, $topicHandler->News_TopicCount());
-$adminObject->addInfoBoxLine(_VNEWS_AM_INDEX_ADMENU2, _VNEWS_AM_INDEX_CONTENTS, $storyHandler->News_StoryAllCount());
-$adminObject->addInfoBoxLine(_VNEWS_AM_INDEX_ADMENU2, _VNEWS_AM_INDEX_CONTENTS_OFFLINE, $storyHandler->News_StoryOfflineCount($story_infos));
-$adminObject->addInfoBoxLine(_VNEWS_AM_INDEX_ADMENU2, _VNEWS_AM_INDEX_CONTENTS_EXPIRE, $storyHandler->News_StoryExpireCount($story_infos));
+$adminObject->addInfoBoxLine(sprintf( _VNEWS_AM_INDEX_CONTENTS, $storyHandler->News_StoryAllCount()), '');
+$adminObject->addInfoBoxLine(sprintf( _VNEWS_AM_INDEX_CONTENTS_OFFLINE, $storyHandler->News_StoryOfflineCount($story_infos)), '');
+$adminObject->addInfoBoxLine(sprintf( _VNEWS_AM_INDEX_CONTENTS_EXPIRE, $storyHandler->News_StoryExpireCount($story_infos)), '');
 
 foreach (array_keys($folder) as $i) {
     $adminObject->addConfigBoxLine($folder[$i], 'folder');
     $adminObject->addConfigBoxLine([$folder[$i], '777'], 'chmod');
 }
 
-$xoopsTpl->assign('navigation', 'index');
-$xoopsTpl->assign('navtitle', _VNEWS_MI_HOME);
+
+//$adminObject->displayNavigation(basename(__FILE__));
+//$adminObject->displayNavigation(basename(__FILE__));
 $xoopsTpl->assign('renderindex', $adminObject->displayIndex());
 
 // Call template file

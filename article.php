@@ -236,7 +236,7 @@ if (xoops_getModuleOption('show_social_book', 'vnews') == '1'
 }
 
 // For xoops tag
-if (xoops_getModuleOption('usetag', 'vnews') and is_dir(XOOPS_ROOT_PATH . '/modules/tag')) {
+if (xoops_getModuleOption('usetag', 'vnews') && is_dir(XOOPS_ROOT_PATH . '/modules/tag')) {
     require_once XOOPS_ROOT_PATH . '/modules/tag/include/tagbar.php';
     $xoopsTpl->assign('tagbar', tagBar($story ['story_id'], $catid = 0));
     $xoopsTpl->assign('tags', true);

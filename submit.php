@@ -79,7 +79,7 @@ switch ($op) {
         $storyHandler->News_ResetNext($_REQUEST ['story_topic'], $obj->getVar('story_id'));
         $storyHandler->News_ResetPrevious($_REQUEST ['story_topic'], $obj->getVar('story_id'));
 
-        if (xoops_getModuleOption('usetag', 'vnews') and is_dir(XOOPS_ROOT_PATH . '/modules/tag')) {
+        if (xoops_getModuleOption('usetag', 'vnews') && is_dir(XOOPS_ROOT_PATH . '/modules/tag')) {
             $tagHandler = xoops_getModuleHandler('tag', 'tag');
             $tagHandler->updateByItem($_POST ['item_tag'], $obj->getVar('story_id'), 'vnews', 0);
         }
