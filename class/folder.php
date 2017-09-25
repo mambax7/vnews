@@ -125,7 +125,7 @@ class FolderHandler
         if ($mode) {
             $this->mode = intval($mode, 8);
         }
-        if (!file_exists($path) && $create === true) {
+        if (!file_exists($path) && true === $create) {
             $this->create($path, $this->mode);
         }
         if (!$this->isAbsolute($path)) {
@@ -178,7 +178,7 @@ class FolderHandler
     {
         $dirs = $files = [];
         $dir  = opendir($this->path);
-        if ($dir !== false) {
+        if (false !== $dir) {
             while (false !== ($n = readdir($dir))) {
                 $item = false;
                 if (is_array($exceptions)) {
@@ -186,13 +186,13 @@ class FolderHandler
                         $item = $n;
                     }
                 } else {
-                    if ((!preg_match('/^\\.+$/', $n) && $exceptions === false)
-                        || ($exceptions === true
+                    if ((!preg_match('/^\\.+$/', $n) && false === $exceptions)
+                        || (true === $exceptions
                             && !preg_match('/^\\.(.*)$/', $n))) {
                         $item = $n;
                     }
                 }
-                if ($item !== false) {
+                if (false !== $item) {
                     if (is_dir($this->addPathElement($this->path, $item))) {
                         $dirs [] = $item;
                     } else {
@@ -419,7 +419,7 @@ class FolderHandler
         } else {
             $return = preg_match('/^(.*)' . preg_quote($current, '/') . '(.*)/', $dir);
         }
-        if ($return == 1) {
+        if (1 == $return) {
             return true;
         } else {
             return false;
@@ -442,7 +442,7 @@ class FolderHandler
         if (!$mode) {
             $mode = $this->mode;
         }
-        if ($recursive === false && is_dir($path)) {
+        if (false === $recursive && is_dir($path)) {
             if (chmod($path, intval($mode, 8))) {
                 $this->messages [] = sprintf('%s changed to %s', $path, $mode);
 
@@ -498,10 +498,10 @@ class FolderHandler
             $this->tree($dir, $hidden);
             array_push($directories, $dir);
         }
-        if ($type === null) {
+        if (null === $type) {
             return [$directories, $this->files];
         }
-        if ($type === 'dir') {
+        if ('dir' === $type) {
             return $directories;
         }
 
@@ -523,12 +523,12 @@ class FolderHandler
             $dirHandle = opendir($path);
             while (false !== ($item = readdir($dirHandle))) {
                 $found = false;
-                if (($hidden === true && $item !== '.' && $item !== '..')
-                    || ($hidden === false
+                if ((true === $hidden && '.' !== $item && '..' !== $item)
+                    || (false === $hidden
                         && !preg_match('/^\\.(.*)$/', $item))) {
                     $found = $path . '/' . $item;
                 }
-                if ($found !== false) {
+                if (false !== $found) {
                     if (is_dir($found)) {
                         array_push($this->directories, $found);
                     } else {
@@ -602,7 +602,7 @@ class FolderHandler
                     $dir = dir($stack [$i]);
                     if ($dir) {
                         while (false !== ($entry = $dir->read())) {
-                            if ($entry === '.' || $entry === '..') {
+                            if ('.' === $entry || '..' === $entry) {
                                 continue;
                             }
                             $add = $stack [$i] . $entry;
@@ -632,7 +632,7 @@ class FolderHandler
     public function delete($path)
     {
         $path = $this->slashTerm($path);
-        if (is_dir($path) === true) {
+        if (true === is_dir($path)) {
             $files        = glob($path . '*', GLOB_NOSORT);
             $normal_files = glob($path . '*');
             $hidden_files = glob($path . '\.?*');
@@ -642,15 +642,15 @@ class FolderHandler
                     if (preg_match("/(\.|\.\.)$/", $file)) {
                         continue;
                     }
-                    if (is_file($file) === true) {
+                    if (true === is_file($file)) {
                         if (unlink($file)) {
                             $this->messages [] = sprintf('%s removed', $path);
                         } else {
                             $this->errors [] = sprintf('%s NOT removed', $path);
                         }
                     } else {
-                        if (is_dir($file) === true) {
-                            if ($this->delete($file) === false) {
+                        if (true === is_dir($file)) {
+                            if (false === $this->delete($file)) {
                                 return false;
                             }
                         }
@@ -658,7 +658,7 @@ class FolderHandler
                 }
             }
             $path = substr($path, 0, strlen($path) - 1);
-            if (rmdir($path) === false) {
+            if (false === rmdir($path)) {
                 $this->errors [] = sprintf('%s NOT removed', $path);
 
                 return false;
@@ -799,7 +799,7 @@ class FolderHandler
     public function realpath($path)
     {
         $path = trim($path);
-        if (strpos($path, '..') === false) {
+        if (false === strpos($path, '..')) {
             if (!$this->isAbsolute($path)) {
                 $path = $this->addPathElement($this->path, $path);
             }
@@ -808,12 +808,12 @@ class FolderHandler
         }
         $parts    = explode('/', $path);
         $newparts = [];
-        $newpath  = $path{0} === '/' ? '/' : '';
-        while (($part = array_shift($parts)) !== null) {
-            if ($part === '.' || $part == '') {
+        $newpath  = '/' === $path{0} ? '/' : '';
+        while (null !== ($part = array_shift($parts))) {
+            if ('.' === $part || '' == $part) {
                 continue;
             }
-            if ($part === '..') {
+            if ('..' === $part) {
                 if (count($newparts) > 0) {
                     array_pop($newparts);
                     continue;
@@ -824,7 +824,7 @@ class FolderHandler
             $newparts [] = $part;
         }
         $newpath .= implode('/', $newparts);
-        if (strlen($path > 1) && $path{strlen($path) - 1} === '/') {
+        if (strlen($path > 1) && '/' === $path{strlen($path) - 1}) {
             $newpath .= '/';
         }
 

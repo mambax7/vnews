@@ -83,7 +83,7 @@ switch ($op) {
 
             //image
             VnewsUtils::News_UtilityUploadImg('topic_img', $obj, $_REQUEST ['topic_img']);
-            if (isset($_POST ['deleteimage']) && (int)$_POST ['deleteimage'] == 1) {
+            if (isset($_POST ['deleteimage']) && 1 == (int)$_POST ['deleteimage']) {
                 VnewsUtils::News_UtilityDeleteImg('topic_img', $obj);
             }
             //permission
@@ -113,7 +113,7 @@ switch ($op) {
             exit();
         }
 
-        if (!$_REQUEST ['story_default'] && $_REQUEST ['story_topic'] == 0) {
+        if (!$_REQUEST ['story_default'] && 0 == $_REQUEST ['story_topic']) {
             $criteria = new CriteriaCompo();
             $criteria->add(new Criteria('story_topic', 0));
             $criteria->add(new Criteria('story_default', 1));
@@ -229,7 +229,7 @@ switch ($op) {
 
             //image
             VnewsUtils::News_UtilityUploadImg('story_img', $obj, $_REQUEST ['story_img']);
-            if (isset($_POST ['deleteimage']) && (int)$_POST ['deleteimage'] == 1) {
+            if (isset($_POST ['deleteimage']) && 1 == (int)$_POST ['deleteimage']) {
                 VnewsUtils::News_UtilityDeleteImg('story_img', $obj);
             }
 

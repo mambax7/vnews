@@ -73,7 +73,7 @@ if (isset($story_topic) && $story_topic > 0) {
         redirect_header('index.php', 3, _VNEWS_MD_TOPIC_ERROR);
     }
 
-    if ($view_topic->getVar('topic_online') == '0') {
+    if ('0' == $view_topic->getVar('topic_online')) {
         redirect_header('index.php', 3, _VNEWS_MD_TOPIC_ERROR);
     }
 
@@ -86,7 +86,7 @@ if (isset($story_topic) && $story_topic > 0) {
 $link = [];
 
 if (isset($story_topic) && $story_topic > 0
-    && $view_topic->getVar('topic_showtype') != '0') { // The option for select setting from topic or module options must be added
+    && '0' != $view_topic->getVar('topic_showtype')) { // The option for select setting from topic or module options must be added
 
     // get topic confing from topic
     if ($view_topic->getVar('topic_showtopic')) {
@@ -109,7 +109,7 @@ if (isset($story_topic) && $story_topic > 0
     if ($view_topic->getVar('topic_showhits')) {
         $link ['hits'] = '1';
     }
-    if ($view_topic->getVar('topic_showcoms') == '1') {
+    if ('1' == $view_topic->getVar('topic_showcoms')) {
         $link ['coms'] = '1';
     }
     if ($view_topic->getVar('topic_showmail')) {
@@ -123,14 +123,14 @@ if (isset($story_topic) && $story_topic > 0
         }
     }
     if ($view_topic->getVar('topic_shownav')) {
-        if ($obj->getVar('story_next') != 0) {
+        if (0 != $obj->getVar('story_next')) {
             $next_obj            = $storyHandler->get($obj->getVar('story_next'));
             $next_link           = $next_obj->toArray();
             $next_link ['topic'] = $story ['topic'];
             $link ['next']       = VnewsUtils::News_UtilityStoryUrl($next_link);
             $link ['next_title'] = $next_link ['story_title'];
         }
-        if ($obj->getVar('story_prev') != 0) {
+        if (0 != $obj->getVar('story_prev')) {
             $prev_obj            = $storyHandler->get($obj->getVar('story_prev'));
             $prev_link           = $prev_obj->toArray();
             $prev_link ['topic'] = $story ['topic'];
@@ -179,14 +179,14 @@ if (isset($story_topic) && $story_topic > 0
         }
     }
     if (xoops_getModuleOption('disp_navlink', 'vnews')) {
-        if ($obj->getVar('story_next') != 0) {
+        if (0 != $obj->getVar('story_next')) {
             $next_obj            = $storyHandler->get($obj->getVar('story_next'));
             $next_link           = $next_obj->toArray();
             $next_link ['topic'] = $story ['topic'];
             $link ['next']       = VnewsUtils::News_UtilityStoryUrl($next_link);
             $link ['next_title'] = $next_link ['story_title'];
         }
-        if ($obj->getVar('story_prev') != 0) {
+        if (0 != $obj->getVar('story_prev')) {
             $prev_obj            = $storyHandler->get($obj->getVar('story_prev'));
             $prev_link           = $prev_obj->toArray();
             $prev_link ['topic'] = $story ['topic'];
@@ -212,24 +212,24 @@ if (file_exists(XOOPS_ROOT_PATH . '/modules/vnews/language/' . $GLOBALS ['xoopsC
 }
 
 if (isset($xoTheme) && is_object($xoTheme)) {
-    if ($story ['story_words'] != '') {
+    if ('' != $story ['story_words']) {
         $xoTheme->addMeta('meta', 'keywords', $story ['story_words']);
     }
-    if ($story ['story_desc'] != '') {
+    if ('' != $story ['story_desc']) {
         $xoTheme->addMeta('meta', 'description', $story ['story_desc']);
     }
 } elseif (isset($xoopsTpl) && is_object($xoopsTpl)) { // Compatibility for old Xoops versions
-    if ($story ['story_words'] != '') {
+    if ('' != $story ['story_words']) {
         $xoopsTpl->assign('xoops_meta_keywords', $story ['story_words']);
     }
-    if ($story ['story_desc'] != '') {
+    if ('' != $story ['story_desc']) {
         $xoopsTpl->assign('xoops_meta_description', $story ['story_desc']);
     }
 }
 
 // For social networks scripts
-if (xoops_getModuleOption('show_social_book', 'vnews') == '1'
-    || xoops_getModuleOption('show_social_book', 'vnews') == '3') {
+if ('1' == xoops_getModuleOption('show_social_book', 'vnews')
+    || '3' == xoops_getModuleOption('show_social_book', 'vnews')) {
     $xoTheme->addScript('http://platform.twitter.com/widgets.js');
     $xoTheme->addScript('http://connect.facebook.net/en_US/all.js#xfbml=1');
     $xoTheme->addScript('https://apis.google.com/assets/js/plusone.js');

@@ -222,7 +222,7 @@ class VnewsTopicHandler extends XoopsPersistableObjectHandler
         if ($infos['topic_id']) {
             $criteria->add(new Criteria('topic_id', $infos['topic_id'], '!='));
         }
-        if ($this->getCount($criteria) == 0) {
+        if (0 == $this->getCount($criteria)) {
             return false;
         } else {
             return true;
@@ -240,7 +240,7 @@ class VnewsTopicHandler extends XoopsPersistableObjectHandler
         $criteria = new Criteria('topic_alias', $alias);
         $criteria->setLimit(1);
         $obj_array = $this->getObjects($criteria, false, false);
-        if (count($obj_array) != 1) {
+        if (1 != count($obj_array)) {
             return 0;
         }
 

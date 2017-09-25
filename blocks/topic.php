@@ -68,7 +68,7 @@ function vnews_topic_edit($options)
     $show_select->addOption('table', _VNEWS_MI_SHOWTYPE_2);
     $form .= _VNEWS_MI_SHOWTYPE . ' : ' . $show_select->render() . '<br>';
 
-    if ($options[2] === false) {
+    if (false === $options[2]) {
         $checked_yes = '';
         $checked_no  = 'checked';
     } else {
@@ -78,7 +78,7 @@ function vnews_topic_edit($options)
     $form .= _VNEWS_MB_IMG . " : <input name=\"options[2]\" value=\"1\" type=\"radio\" " . $checked_yes . '>' . _YES . "&nbsp;\n";
     $form .= "<input name=\"options[2]\" value=\"0\" type=\"radio\" " . $checked_no . '>' . _NO . "<br>\n";
 
-    if ($options[3] === false) {
+    if (false === $options[3]) {
         $checked_yes = '';
         $checked_no  = 'checked';
     } else {
@@ -88,7 +88,7 @@ function vnews_topic_edit($options)
     $form .= _VNEWS_MB_DESCRIPTION . " : <input name=\"options[3]\" value=\"1\" type=\"radio\" " . $checked_yes . '>' . _YES . "&nbsp;\n";
     $form .= "<input name=\"options[3]\" value=\"0\" type=\"radio\" " . $checked_no . '>' . _NO . "<br>\n";
 
-    if ($options[4] === false) {
+    if (false === $options[4]) {
         $checked_yes = '';
         $checked_no  = 'checked';
     } else {

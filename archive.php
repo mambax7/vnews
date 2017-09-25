@@ -83,7 +83,7 @@ while (list($time) = $xoopsDB->fetchRow($result)) {
         if (empty($lastyear)) {
             $lastyear = $this_year;
         }
-        if ($lastmonth == 0) {
+        if (0 == $lastmonth) {
             $lastmonth                    = $this_month;
             $months[$lastmonth]['string'] = $months_arr[$lastmonth];
             $months[$lastmonth]['number'] = $lastmonth;
@@ -109,7 +109,7 @@ $years[$i]['months'] = $months;
 $xoopsTpl->assign('years', $years);
 $xoopsTpl->assign('module', 'vnews');
 
-if ($fromyear != 0 && $frommonth != 0) {
+if (0 != $fromyear && 0 != $frommonth) {
     // must adjust the selected time to server timestamp
     $timeoffset = $useroffset - $xoopsConfig['server_TZ'];
     $monthstart = mktime(0 - $timeoffset, 0, 0, $frommonth, 1, $fromyear);

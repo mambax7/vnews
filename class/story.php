@@ -441,7 +441,7 @@ class VnewsStoryHandler extends XoopsPersistableObjectHandler
         if ($infos['story_id']) {
             $criteria->add(new Criteria('story_id', $infos['story_id'], '!='));
         }
-        if ($this->getCount($criteria) == 0) {
+        if (0 == $this->getCount($criteria)) {
             return false;
         } else {
             return true;
@@ -459,7 +459,7 @@ class VnewsStoryHandler extends XoopsPersistableObjectHandler
         $criteria = new Criteria('story_alias', $alias);
         $criteria->setLimit(1);
         $obj_array = $this->getObjects($criteria, false, false);
-        if (count($obj_array) != 1) {
+        if (1 != count($obj_array)) {
             return 0;
         }
 
@@ -474,7 +474,7 @@ class VnewsStoryHandler extends XoopsPersistableObjectHandler
     public function News_StoryGetDefault($criteria = null)
     {
         $obj_array = $this->getObjects($criteria, false, false);
-        if (count($obj_array) != 1) {
+        if (1 != count($obj_array)) {
             return 0;
         }
 
@@ -644,7 +644,7 @@ class VnewsStoryHandler extends XoopsPersistableObjectHandler
 
         $access_topic = VnewsPermission::News_PermissionItemId('vnews_view');
 
-        if (!(count($topics) == 1 && $topics [0] == 0)) {
+        if (!(1 == count($topics) && 0 == $topics [0])) {
             $topiclist = array_intersect($access_topic, $topics);
         } else {
             $topiclist = $access_topic;
@@ -762,10 +762,10 @@ class VnewsStoryHandler extends XoopsPersistableObjectHandler
     {
         $ret      = [];
         $criteria = new CriteriaCompo();
-        if ($story_infos['story_id'] != 0) {
+        if (0 != $story_infos['story_id']) {
             $criteria->add(new Criteria('story_id', $story_infos['story_id'], '>'));
         }
-        if ($story_infos['story_topic'] != 0) {
+        if (0 != $story_infos['story_topic']) {
             $criteria->add(new Criteria('story_topic', $story_infos['story_topic']));
         } else {
             $criteria->add(new Criteria('story_topic', 0, '!='));
@@ -1106,7 +1106,7 @@ class VnewsStoryHandler extends XoopsPersistableObjectHandler
 
         foreach ($list as $item) {
             $storyid [] = $item['story_id'];
-            if ($item['story_default'] === '1') {
+            if ('1' === $item['story_default']) {
                 $defaultid [] = $item['story_id'];
             }
         }
@@ -1304,7 +1304,7 @@ class VnewsStoryHandler extends XoopsPersistableObjectHandler
     {
         $ret          = [];
         $access_topic = VnewsPermission::News_PermissionItemId('vnews_view');
-        if (!(count($topics) == 1 && $topics [0] == 0)) {
+        if (!(1 == count($topics) && 0 == $topics [0])) {
             $topiclist = array_intersect($access_topic, $topics);
         } else {
             $topiclist = $access_topic;
@@ -1387,7 +1387,7 @@ class VnewsStoryHandler extends XoopsPersistableObjectHandler
     {
         $ret          = [];
         $access_topic = VnewsPermission::News_PermissionItemId('vnews_view');
-        if (!(count($topics) == 1 && $topics [0] == 0)) {
+        if (!(1 == count($topics) && 0 == $topics [0])) {
             $topiclist = array_intersect($access_topic, $topics);
         } else {
             $topiclist = $access_topic;

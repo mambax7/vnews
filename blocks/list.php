@@ -64,7 +64,7 @@ function vnews_list_show($options)
     array_shift($options);
 
     // Set story publish
-    if ($story_infos['story_sort'] == 'story_hits') {
+    if ('story_hits' == $story_infos['story_sort']) {
         if ($day) {
             $day                          = 86400 * $day;
             $story_infos['story_publish'] = time() - $day;
@@ -86,7 +86,7 @@ function vnews_list_show($options)
     $story_infos ['topics'] = $topicHandler->getall();
     $stores                 = $storyHandler->News_StoryBlockList($story_infos, $topics);
 
-    if ($show == 'spotlight') {
+    if ('spotlight' == $show) {
         $id                       = $storyHandler->News_StorySpotlightId($stores);
         $block['spotlightid']     = $id['spotlightid'];
         $block['subspotlightid1'] = $id['subspotlightid1'];
@@ -142,7 +142,7 @@ function vnews_list_edit($options)
     $form .= _VNEWS_MB_NUMBER . " : <input name=\"options[2]\" size=\"5\" maxlength=\"255\" value=\"" . $options[2] . "\" type=\"text\"><br>\n";
     $form .= _VNEWS_MB_CHARS . " : <input name=\"options[3]\" size=\"5\" maxlength=\"255\" value=\"" . $options[3] . "\" type=\"text\"><br>\n";
 
-    if ($options[4] === false) {
+    if (false === $options[4]) {
         $checked_yes = '';
         $checked_no  = 'checked';
     } else {
@@ -152,7 +152,7 @@ function vnews_list_edit($options)
     $form .= _VNEWS_MB_IMG . " : <input name=\"options[4]\" value=\"1\" type=\"radio\" " . $checked_yes . '>' . _YES . "&nbsp;\n";
     $form .= "<input name=\"options[4]\" value=\"0\" type=\"radio\" " . $checked_no . '>' . _NO . "<br>\n";
 
-    if ($options[5] === false) {
+    if (false === $options[5]) {
         $checked_yes = '';
         $checked_no  = 'checked';
     } else {
@@ -162,7 +162,7 @@ function vnews_list_edit($options)
     $form .= _VNEWS_MB_DESCRIPTION . " : <input name=\"options[5]\" value=\"1\" type=\"radio\" " . $checked_yes . '>' . _YES . "&nbsp;\n";
     $form .= "<input name=\"options[5]\" value=\"0\" type=\"radio\" " . $checked_no . '>' . _NO . "<br>\n";
 
-    if ($options[6] === false) {
+    if (false === $options[6]) {
         $checked_yes = '';
         $checked_no  = 'checked';
     } else {
@@ -193,7 +193,7 @@ function vnews_list_edit($options)
     $order_select->addOption('ASC', _VNEWS_MI_ASC);
     $form .= _VNEWS_MI_SHOWORDER . ' : ' . $order_select->render() . '<br>';
 
-    if ($options[11] === false) {
+    if (false === $options[11]) {
         $checked_yes = '';
         $checked_no  = 'checked';
     } else {
@@ -206,7 +206,7 @@ function vnews_list_edit($options)
     $form .= _VNEWS_MB_MORELINK . " : <input name=\"options[12]\" size=\"50\" maxlength=\"255\" value=\"" . $options[12] . "\" type=\"text\"><br>\n";
     $form .= _VNEWS_MB_HITINDAY1 . " <input name=\"options[13]\" size=\"5\" maxlength=\"255\" value=\"" . $options[13] . "\" type=\"text\">" . _VNEWS_MB_HITINDAY2 . "<br>\n";
 
-    if ($options[14] === false) {
+    if (false === $options[14]) {
         $checked_yes = '';
         $checked_no  = 'checked';
     } else {
@@ -233,9 +233,9 @@ function vnews_list_edit($options)
     array_shift($options);
 
     $form .= '<br>' . _VNEWS_MB_TOPICDISPLAY . "<br><select name=\"options[]\" multiple=\"multiple\" size=\"5\">\n";
-    $form .= "<option value=\"0\" " . (array_search(0, $options) === false ? '' : 'selected') . '>' . _VNEWS_MB_ALLMENUS . "</option>\n";
+    $form .= "<option value=\"0\" " . (false === array_search(0, $options) ? '' : 'selected') . '>' . _VNEWS_MB_ALLMENUS . "</option>\n";
     foreach (array_keys($topic_arr) as $i) {
-        $form .= "<option value=\"" . $topic_arr[$i]->getVar('topic_id') . "\" " . (array_search($topic_arr[$i]->getVar('topic_id'), $options) === false ? '' : 'selected') . '>' . $topic_arr[$i]->getVar('topic_title') . "</option>\n";
+        $form .= "<option value=\"" . $topic_arr[$i]->getVar('topic_id') . "\" " . (false === array_search($topic_arr[$i]->getVar('topic_id'), $options) ? '' : 'selected') . '>' . $topic_arr[$i]->getVar('topic_title') . "</option>\n";
     }
     $form .= "</select>\n";
 

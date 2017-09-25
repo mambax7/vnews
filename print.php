@@ -45,7 +45,7 @@ if (isset($story_topic) && $story_topic > 0) {
         redirect_header('index.php', 3, _VNEWS_MD_TOPIC_ERROR);
     }
 
-    if ($view_topic->getVar('topic_online') == '0') {
+    if ('0' == $view_topic->getVar('topic_online')) {
         redirect_header('index.php', 3, _VNEWS_MD_TOPIC_ERROR);
     }
 
@@ -54,9 +54,9 @@ if (isset($story_topic) && $story_topic > 0) {
         redirect_header('index.php', 3, _NOPERM);
     }
 
-    if ($GLOBALS['xoopsModuleConfig']['disp_option'] && $view_topic->getVar('topic_showprint') == '0') {
+    if ($GLOBALS['xoopsModuleConfig']['disp_option'] && '0' == $view_topic->getVar('topic_showprint')) {
         redirect_header('index.php', 3, _NOPERM);
-    } elseif ($GLOBALS['xoopsModuleConfig']['disp_printlink'] == '0') {
+    } elseif ('0' == $GLOBALS['xoopsModuleConfig']['disp_printlink']) {
         redirect_header('index.php', 3, _NOPERM);
     }
 }

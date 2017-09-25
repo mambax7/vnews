@@ -74,7 +74,7 @@ function vnews_marquee_edit($options)
     $form .= _VNEWS_MB_NUMBER . " : <input type=\"text\" name=\"options[1]\" size=\"5\" maxlength=\"10\" value=\"" . $options[1] . "\" type=\"text\"><br>\n";
     $form .= _VNEWS_MB_CHARS . ":<input type=\"text\" name=\"options[2]\" size=\"5\" maxlength=\"10\" value=\"" . $options[2] . "\"><br>";
 
-    if ($options[3] === false) {
+    if (false === $options[3]) {
         $checked_yes = '';
         $checked_no  = 'checked';
     } else {
@@ -90,9 +90,9 @@ function vnews_marquee_edit($options)
     array_shift($options);
 
     $form .= _VNEWS_MB_TOPICDISPLAY . "<br><select name=\"options[]\" multiple=\"multiple\" size=\"5\">\n";
-    $form .= "<option value=\"0\" " . (array_search(0, $options) === false ? '' : 'selected') . '>' . _VNEWS_MB_ALLMENUS . "</option>\n";
+    $form .= "<option value=\"0\" " . (false === array_search(0, $options) ? '' : 'selected') . '>' . _VNEWS_MB_ALLMENUS . "</option>\n";
     foreach (array_keys($topic_arr) as $i) {
-        $form .= "<option value=\"" . $topic_arr[$i]->getVar('topic_id') . "\" " . (array_search($topic_arr[$i]->getVar('topic_id'), $options) === false ? '' : 'selected') . '>' . $topic_arr[$i]->getVar('topic_title') . "</option>\n";
+        $form .= "<option value=\"" . $topic_arr[$i]->getVar('topic_id') . "\" " . (false === array_search($topic_arr[$i]->getVar('topic_id'), $options) ? '' : 'selected') . '>' . $topic_arr[$i]->getVar('topic_title') . "</option>\n";
     }
     $form .= "</select>\n";
 

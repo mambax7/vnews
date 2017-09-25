@@ -49,7 +49,7 @@ if (isset($story_topic)) {
         redirect_header('index.php', 3, _VNEWS_MD_ERROR_TOPIC);
     }
 
-    if ($view_topic->getVar('topic_online') == '0') {
+    if ('0' == $view_topic->getVar('topic_online')) {
         redirect_header('index.php', 3, _VNEWS_MD_ERROR_TOPIC);
     }
 
@@ -158,7 +158,7 @@ if (isset($stores ['pagenav'])) {
 
 $info = [];
 if (isset($story_topic) && $story_topic > 0
-    && $view_topic->getVar('topic_showtype') != '0') { // The option for select setting from topic or module options must be added
+    && '0' != $view_topic->getVar('topic_showtype')) { // The option for select setting from topic or module options must be added
     if ($view_topic->getVar('topic_showauthor')) {
         $info ['author'] = '1';
     }
@@ -220,7 +220,7 @@ if (xoops_getModuleOption('bc_show', 'vnews')) {
 }
 
 // sub topic
-if (isset($info['subtopic']) && $info['subtopic'] == '1') {
+if (isset($info['subtopic']) && '1' == $info['subtopic']) {
     $sub_topic = $topicHandler->News_TopicSubIdList($story_topic);
     $xoopsTpl->assign('sub_topic', $sub_topic);
 }

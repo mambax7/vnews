@@ -45,7 +45,7 @@ class ForRegistry
      */
     public function setEntry($key, $item)
     {
-        if ($this->isLocked($key) === true) {
+        if (true === $this->isLocked($key)) {
             trigger_error('Unable to set entry `' . $key . '`. Entry is locked.', E_USER_WARNING);
 
             return false;
@@ -71,7 +71,7 @@ class ForRegistry
      */
     public function getEntry($key)
     {
-        if (isset($this->_entries [$this->_dirname] [$key]) === false) {
+        if (false === isset($this->_entries [$this->_dirname] [$key])) {
             return null;
         }
 
@@ -85,7 +85,7 @@ class ForRegistry
      */
     public function isEntry($key)
     {
-        return ($this->getEntry($key) !== null);
+        return (null !== $this->getEntry($key));
     }
 
     /**
@@ -115,7 +115,7 @@ class ForRegistry
      */
     public function isLocked($key)
     {
-        return (isset($this->_locks [$this->_dirname] [$key]) === true);
+        return (true === isset($this->_locks [$this->_dirname] [$key]));
     }
 
     public function unsetAll()

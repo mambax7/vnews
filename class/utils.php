@@ -194,9 +194,9 @@ class VnewsUtils
     ) {
         global $xoopsModule;
         $topic_parent = $mytree->getAllParent($key);
-        if ($order == 'ASC') {
+        if ('ASC' == $order) {
             $topic_parent = array_reverse($topic_parent);
-            if ($link === true && $modname) {
+            if (true === $link && $modname) {
                 if ($key) {
                     $Path = '<a title="' . $xoopsModule->name() . '" href="' . XOOPS_URL . '/modules/vnews/index.php">' . $xoopsModule->name() . '</a>' . $prefix;
                 } else {
@@ -216,7 +216,7 @@ class VnewsUtils
             $Path = $first_category . $prefix;
         }
         foreach (array_keys($topic_parent) as $j) {
-            if ($link === true) {
+            if (true === $link) {
                 $topic_info = [
                     'topic_id'    => $topic_parent [$j]->getVar('topic_id'),
                     'topic_title' => $topic_parent [$j]->getVar('topic_title'),
@@ -227,9 +227,9 @@ class VnewsUtils
                 $Path .= $topic_parent [$j]->getVar($title) . $prefix;
             }
         }
-        if ($order == 'ASC') {
+        if ('ASC' == $order) {
             if (array_key_exists($key, $topic_array)) {
-                if ($lasturl === true) {
+                if (true === $lasturl) {
                     $first_category = '<a title="' . $topic_array [$key]->getVar($title) . '" href="' . self::News_UtilityTopicUrl([
                                                                                                                                        'topic_id'    => $topic_array [$key]->getVar('topic_id'),
                                                                                                                                        'topic_alias' => $topic_array [$key]->getVar('topic_alias')
@@ -242,7 +242,7 @@ class VnewsUtils
             }
             $Path .= $first_category;
         } else {
-            if ($link === true) {
+            if (true === $link) {
                 $Path .= '<a title="' . $xoopsModule->name() . '" href="' . XOOPS_URL . '/modules/vnews/index.php">' . $xoopsModule->name() . '</a>';
             } else {
                 $Path .= $xoopsModule->name();
@@ -570,7 +570,7 @@ class VnewsUtils
                 $ret = isset($global[$key]) ? filter_var($global[$key], FILTER_SANITIZE_NUMBER_INT) : $default;
                 break;
         }
-        if ($ret === false) {
+        if (false === $ret) {
             return $default;
         }
 
@@ -615,7 +615,7 @@ class VnewsUtils
         $url = htmlentities($url, ENT_COMPAT, 'utf-8');
         $url = preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', "\\1", $url);
         $url = preg_replace([$regular_expression, '`[-]+`'], '-', $url);
-        $url = ($url == '') ? $type : strtolower(trim($url, '-'));
+        $url = ('' == $url) ? $type : strtolower(trim($url, '-'));
 
         return $url;
     }
@@ -642,7 +642,7 @@ class VnewsUtils
         $meta = htmlentities($meta, ENT_COMPAT, 'utf-8');
         $meta = preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', "\\1", $meta);
         $meta = preg_replace([$regular_expression, '`[,]+`'], ',', $meta);
-        $meta = ($meta == '') ? $type : strtolower(trim($meta, ','));
+        $meta = ('' == $meta) ? $type : strtolower(trim($meta, ','));
 
         return $meta;
     }
@@ -709,7 +709,7 @@ class VnewsUtils
     {
         $lenght_id    = $GLOBALS['xoopsModuleConfig']['lenght_id'];
         $friendly_url = $GLOBALS['xoopsModuleConfig']['friendly_url'];
-        if ($lenght_id != 0) {
+        if (0 != $lenght_id) {
             $id = $array['topic_id'];
             while (strlen($id) < $lenght_id) {
                 $id = '0' . $id;
@@ -776,7 +776,7 @@ class VnewsUtils
         $lenght_id    = $GLOBALS['xoopsModuleConfig']['lenght_id'];
         $friendly_url = $GLOBALS['xoopsModuleConfig']['friendly_url'];
 
-        if ($lenght_id != 0) {
+        if (0 != $lenght_id) {
             $id = $array['story_id'];
             while (strlen($id) < $lenght_id) {
                 $id = '0' . $id;
@@ -816,11 +816,11 @@ class VnewsUtils
                 $page = $array['story_alias'];
                 $type = $type . '/';
                 $id   = $id . '/';
-                if ($type == 'article/') {
+                if ('article/' == $type) {
                     $type = '';
                 }
 
-                if ($type == 'comment-edit/' || $type == 'comment-reply/' || $type == 'comment-delete/') {
+                if ('comment-edit/' == $type || 'comment-reply/' == $type || 'comment-delete/' == $type) {
                     return XOOPS_URL . $rewrite_base . $module_name . $type . $id . '/';
                 }
 
@@ -839,11 +839,11 @@ class VnewsUtils
                 }
                 $page = $array['story_alias'];
                 $type = $type . '/';
-                if ($type == 'article/') {
+                if ('article/' == $type) {
                     $type = '';
                 }
 
-                if ($type == 'comment-edit/' || $type == 'comment-reply/' || $type == 'comment-delete/') {
+                if ('comment-edit/' == $type || 'comment-reply/' == $type || 'comment-delete/' == $type) {
                     return XOOPS_URL . $rewrite_base . $module_name . $type . $id . '/';
                 }
 

@@ -32,7 +32,7 @@ $xoopsTpl->xoops_setCaching(2);
 $xoopsTpl->xoops_setCacheTime($GLOBALS['xoopsModuleConfig']['rss_timecache'] * 1);
 $myts = MyTextSanitizer::getInstance();
 if (!$xoopsTpl->is_cached('db:vnews_rss.tpl')) {
-    if ($story_topic != 0) {
+    if (0 != $story_topic) {
         $channel_category .= ' > ' . $topic_obj->getVar('topic_title');
     } else {
         $channel_category = 'vnews';
@@ -82,7 +82,7 @@ if (!$xoopsTpl->is_cached('db:vnews_rss.tpl')) {
         $story_topic = null;
     }
 
-    if ($story_topic != 0) {
+    if (0 != $story_topic) {
         $permHandler = VnewsPermission::getHandler();
         if ($permHandler->News_PermissionIsAllowed($xoopsUser, 'vnews_view', $story_topic)) {
             $topic_obj = $topicHandler->get($story_topic);
